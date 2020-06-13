@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PreviewMovieCard from '../preview-movie-card/previe-movie-card.jsx';
+import PreviewMovieCard from '../preview-movie-card/preview-movie-card.jsx';
 
 const Main = (props) => {
   const {movieTitle, movieGenre, movieReleaseDate, moviesTitle} = props;
