@@ -8,6 +8,7 @@ it(`PreviewMovieCars should render Fantastic Beasts`, () =>{
   const tree = renderer.create(
       <PreviewMovieCard
         movieTitle={movieTitle}
+        onTitleClick={() => {}}
       />
   ).toJSON();
 

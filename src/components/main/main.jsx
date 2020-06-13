@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PreviewMovieCard from '../preview-movie-card/preview-movie-card.jsx';
 
+const previewMovieCardTitleHandler = () => {};
+
 const Main = (props) => {
   const {movieTitle, movieGenre, movieReleaseDate, moviesTitle} = props;
   return (<React.Fragment>
@@ -99,7 +101,7 @@ const Main = (props) => {
         </ul>
 
         <div className="catalog__movies-list">
-          {moviesTitle.map((title, index) => <PreviewMovieCard movieTitle={title} key={title + index}/>)}
+          {moviesTitle.map((title, index) => <PreviewMovieCard movieTitle={title} onTitleClick={previewMovieCardTitleHandler} key={title + index}/>)}
         </div>
 
         <div className="catalog__more">
