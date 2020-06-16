@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SmallMovieCard = (props) => {
-  const {film, onTitleClick, onCardMouseEnter} = props;
+  const {film, onTitleClick, onCardMouseEnter, onCardMouseLeave} = props;
   const {title, image} = film;
   return (
-    <article key={title} className="small-movie-card catalog__movies-card" onMouseEnter={() => onCardMouseEnter(film)}>
+    <article key={title} className="small-movie-card catalog__movies-card" onMouseEnter={() => onCardMouseEnter(film)} onMouseLeave={onCardMouseLeave}>
       <div className="small-movie-card__image">
         <img src={`img/${image}`} alt={title} width="280" height="175" />
       </div>
@@ -24,7 +24,8 @@ SmallMovieCard.propTypes = {
     releaseDate: PropTypes.string.isRequired,
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
 };
 
 export default SmallMovieCard;

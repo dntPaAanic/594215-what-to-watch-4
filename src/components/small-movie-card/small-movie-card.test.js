@@ -2,13 +2,21 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SmallMovieCard from './small-movie-card.jsx';
 
-const movieTitle = `Fantastic Beasts`;
+const film = {
+  title: `Pulp Fiction`,
+  image: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  genre: `Drama`,
+  releaseDate: `2003`,
+};
+
 
 it(`SmallMovieCard should render Fantastic Beasts`, () =>{
   const tree = renderer.create(
       <SmallMovieCard
-        movieTitle={movieTitle}
+        film={film}
         onTitleClick={() => {}}
+        onCardMouseEnter={() => {}}
+        onCardMouseLeave={() => {}}
       />
   ).toJSON();
 

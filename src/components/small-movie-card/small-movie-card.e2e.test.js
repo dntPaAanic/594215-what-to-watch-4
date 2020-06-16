@@ -7,19 +7,41 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const movieTitle = `Fantastic Beasts`;
+const film = {
+  title: `Pulp Fiction`,
+  image: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  genre: `Drama`,
+  releaseDate: `2003`,
+};
 
-it(`PreviewMovieCard title should be clicked`, () => {
-  const previewMovieCardTitleClickHandler = jest.fn();
+describe(`SmallMovieCard group`, () => {
+  const titleClickHandler = jest.fn();
+  const cardMouseEnterHandler = jest.fn();
+  const cardMouseLeaveHandler = jest.fn();
 
-  const previewMovieCard = shallow(
+  const smallMovieCard = shallow(
       <SmallMovieCard
-        movieTitle={movieTitle}
-        onTitleClick={previewMovieCardTitleClickHandler}
+        film={film}
+        onTitleClick={titleClickHandler}
+        onCardMouseEnter={cardMouseEnterHandler}
+        onCardMouseLeave={cardMouseLeaveHandler}
       />);
 
-  const previewMovieCardTitle = previewMovieCard.find(`.small-movie-card__title`);
+  it(`SmallMovieCard title click is correct`, () => {
+    const smallMovieCardTitle = smallMovieCard.find(`.small-movie-card__title`);
 
-  previewMovieCardTitle.simulate(`click`);
-  expect(previewMovieCardTitleClickHandler).toHaveBeenCalledTimes(1);
+    smallMovieCardTitle.simulate(`click`);
+    expect(titleClickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it(`SmallMovieCard mouseenter is correct`, () => {
+    smallMovieCard.simulate(`mouseenter`);
+    expect(cardMouseEnterHandler).toHaveBeenCalledTimes(1);
+    expect(cardMouseEnterHandler).toBeCalledWith(film);
+  });
+
+  it(`SmallMovieCard mouseleave is correct`, () => {
+    smallMovieCard.simulate(`mouseleave`);
+    expect(cardMouseLeaveHandler).toHaveBeenCalledTimes(1);
+  });
 });

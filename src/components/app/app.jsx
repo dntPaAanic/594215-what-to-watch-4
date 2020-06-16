@@ -6,7 +6,7 @@ const App = (props) => {
   const {films} = props;
   return <Main
     films={films}
-  />
+  />;
 };
 
 App.propTypes = {
