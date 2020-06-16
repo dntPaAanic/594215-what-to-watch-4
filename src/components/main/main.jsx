@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PreviewMovieCard from '../preview-movie-card/preview-movie-card.jsx';
+import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
 const previewMovieCardTitleHandler = () => {};
 
@@ -101,7 +101,7 @@ const Main = (props) => {
         </ul>
 
         <div className="catalog__movies-list">
-          {moviesTitle.map((title, index) => <PreviewMovieCard movieTitle={title} onTitleClick={previewMovieCardTitleHandler} key={title + index}/>)}
+          {moviesTitle.map((title, index) => <SmallMovieCard movieTitle={title} onTitleClick={previewMovieCardTitleHandler} key={title + index}/>)}
         </div>
 
         <div className="catalog__more">

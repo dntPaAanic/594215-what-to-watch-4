@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PreviewMovieCard = ({movieTitle, onTitleClick}) => {
+const SmallMovieCard = ({movieTitle, onTitleClick}) => {
   return (
     <article key={movieTitle} className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
@@ -14,9 +14,9 @@ const PreviewMovieCard = ({movieTitle, onTitleClick}) => {
   );
 };
 
-PreviewMovieCard.propTypes = {
+SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   onTitleClick: PropTypes.func.isRequired
 };
 
-export default PreviewMovieCard;
+export default SmallMovieCard;

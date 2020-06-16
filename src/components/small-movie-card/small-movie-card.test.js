@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PreviewMovieCard from './preview-movie-card.jsx';
+import SmallMovieCard from './small-movie-card.jsx';
 
 const movieTitle = `Fantastic Beasts`;
 
 it(`PreviewMovieCars should render Fantastic Beasts`, () =>{
   const tree = renderer.create(
-      <PreviewMovieCard
+      <SmallMovieCard
         movieTitle={movieTitle}
         onTitleClick={() => {}}
       />

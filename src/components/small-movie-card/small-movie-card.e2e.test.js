@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import PreviewMovieCard from './preview-movie-card.jsx';
+import SmallMovieCard from './small-movie-card.jsx';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -13,7 +13,7 @@ it(`PreviewMovieCard title should be clicked`, () => {
   const previewMovieCardTitleClickHandler = jest.fn();
 
   const previewMovieCard = shallow(
-      <PreviewMovieCard
+      <SmallMovieCard
         movieTitle={movieTitle}
         onTitleClick={previewMovieCardTitleClickHandler}
       />);
