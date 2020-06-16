@@ -4,7 +4,7 @@ import SmallMovieCard from './small-movie-card.jsx';
 
 const movieTitle = `Fantastic Beasts`;
 
-it(`PreviewMovieCars should render Fantastic Beasts`, () =>{
+it(`SmallMovieCard should render Fantastic Beasts`, () =>{
   const tree = renderer.create(
       <SmallMovieCard
         movieTitle={movieTitle}
