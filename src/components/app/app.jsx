@@ -3,21 +3,19 @@ import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
 const App = (props) => {
-  const {movieTitle, movieGenre, movieReleaseDate, moviesTitle} = props;
+  const {films} = props;
   return <Main
-    movieTitle={movieTitle}
-    movieGenre={movieGenre}
-    movieReleaseDate={movieReleaseDate}
-    moviesTitle={moviesTitle}/>;
+    films={films}
+  />;
 };
 
 App.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  movieReleaseDate: PropTypes.number.isRequired,
-  moviesTitle: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+  })).isRequired
 };
 
 export default App;

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PreviewMovieCard from '../preview-movie-card/preview-movie-card.jsx';
-
-const previewMovieCardTitleHandler = () => {};
+import MoviesList from '../movies-list/movies-list.jsx';
 
 const Main = (props) => {
-  const {movieTitle, movieGenre, movieReleaseDate, moviesTitle} = props;
+  const {films} = props;
+  const {title, genre, releaseDate} = films[0];
+
   return (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -38,10 +38,10 @@ const Main = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{movieTitle}</h2>
+            <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{movieGenre}</span>
-              <span className="movie-card__year">{movieReleaseDate}</span>
+              <span className="movie-card__genre">{genre}</span>
+              <span className="movie-card__year">{releaseDate}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -100,9 +100,7 @@ const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {moviesTitle.map((title, index) => <PreviewMovieCard movieTitle={title} onTitleClick={previewMovieCardTitleHandler} key={title + index}/>)}
-        </div>
+        <MoviesList films={films}/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -127,12 +125,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  movieReleaseDate: PropTypes.number.isRequired,
-  moviesTitle: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+  })).isRequired
 };
 
 export default Main;

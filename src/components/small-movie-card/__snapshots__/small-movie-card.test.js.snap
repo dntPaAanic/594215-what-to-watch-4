@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PreviewMovieCars should render Fantastic Beasts 1`] = `
+exports[`SmallMovieCard should render Fantastic Beasts 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
     <img
-      alt="Fantastic Beasts"
+      alt="Pulp Fiction"
       height="175"
       src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
@@ -22,7 +24,7 @@ exports[`PreviewMovieCars should render Fantastic Beasts 1`] = `
       className="small-movie-card__link"
       href="movie-page.html"
     >
-      Fantastic Beasts
+      Pulp Fiction
     </a>
   </h3>
 </article>

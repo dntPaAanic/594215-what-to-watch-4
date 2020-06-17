@@ -1,7 +1,3 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Main from './main.jsx';
-
 const films = [
   {
     title: `The Grand Budapest Hotel`,
@@ -53,12 +49,4 @@ const films = [
   },
 ];
 
-it(`Main should render correct`, () => {
-  const tree = renderer.create(
-      <Main
-        films={films}
-      />
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
+export default films;
