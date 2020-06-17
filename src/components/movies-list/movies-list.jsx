@@ -7,6 +7,7 @@ export default class MoviesList extends PureComponent {
     super(props);
     this._handleTitleClick = this._handleTitleClick.bind(this);
     this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
+    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
 
     this.state = {
       activeSmallMovieCard: null
@@ -18,7 +19,14 @@ export default class MoviesList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film) => <SmallMovieCard film={film} onTitleClick={this._handleTitleClick} onCardMouseEnter={this._handleCardMouseEnter} onCardMouseLeave={this._handleCardMouseLeave} key={film.title}/>)}
+        {films.map((film) =>
+          <SmallMovieCard
+            film={film}
+            onTitleClick={this._handleTitleClick}
+            onCardMouseEnter={this._handleCardMouseEnter}
+            onCardMouseLeave={this._handleCardMouseLeave}
+            key={film.title}
+          />)}
       </div>
     );
   }
