@@ -10,6 +10,8 @@ export default class App extends PureComponent {
   }
 
   render() {
+    const {films} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -17,7 +19,7 @@ export default class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-movie-page">
-            <MoviePage/>
+            <MoviePage film={films[0]}/>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -25,16 +27,34 @@ export default class App extends PureComponent {
   }
 
   _renderApp() {
-    const {films} = this.props;
-    return <Main films={films}/>;
+    const {title, genre, releaseDate, films} = this.props;
+
+    return (
+      <Main
+        title={title}
+        genre={genre}
+        releaseDate={releaseDate}
+        films={films}
+      />
+    );
   }
 }
 
 App.propTypes = {
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  releaseDate: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
+    imagePoster: PropTypes.string.isRequired,
+    imageBackground: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired
   })).isRequired
 };
