@@ -127,7 +127,7 @@ const Main = (props) => {
 Main.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
   })).isRequired
