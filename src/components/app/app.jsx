@@ -1,12 +1,33 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import Main from '../main/main.jsx';
+import MoviePage from '../movie-page/movie-page.jsx';
 
-const App = (props) => {
-  const {films} = props;
-  return <Main
-    films={films}
-  />;
+export default class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-movie-page">
+            <MoviePage/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    )
+  }
+
+  _renderApp() {
+    const {films} = this.props;
+    return <Main films={films}/>;
+  }
 };
 
 App.propTypes = {
@@ -17,5 +38,3 @@ App.propTypes = {
     releaseDate: PropTypes.string.isRequired,
   })).isRequired
 };
-
-export default App;
