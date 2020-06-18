@@ -50,6 +50,6 @@ MoviesList.propTypes = {
     title: PropTypes.string.isRequired,
     imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
   })).isRequired
 };

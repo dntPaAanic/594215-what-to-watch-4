@@ -2,7 +2,7 @@ const films = [
   {
     title: `The Grand Budapest Hotel`,
     genre: `Drama`,
-    releaseDate: `2001`,
+    releaseDate: 2001,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -15,7 +15,7 @@ const films = [
   {
     title: `Bohemian Rhapsody`,
     genre: `Comedy`,
-    releaseDate: `2014`,
+    releaseDate: 2014,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -28,7 +28,7 @@ const films = [
   {
     title: `Macbeth`,
     genre: `Comedy`,
-    releaseDate: `2000`,
+    releaseDate: 2000,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -41,7 +41,7 @@ const films = [
   {
     title: `Aviator`,
     genre: `Comedy`,
-    releaseDate: `2012`,
+    releaseDate: 2012,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -54,7 +54,7 @@ const films = [
   {
     title: `We need to talk about Kevin`,
     genre: `Crime`,
-    releaseDate: `2018`,
+    releaseDate: 2018,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -67,7 +67,7 @@ const films = [
   {
     title: `What We Do in the Shadows`,
     genre: `Drama`,
-    releaseDate: `2005`,
+    releaseDate: 2005,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -80,7 +80,7 @@ const films = [
   {
     title: `Pulp Fiction`,
     genre: `Drama`,
-    releaseDate: `2003`,
+    releaseDate: 2003,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,
@@ -93,7 +93,7 @@ const films = [
   {
     title: `No Country for Old Men`,
     genre: `Comedy`,
-    releaseDate: `2014`,
+    releaseDate: 2014,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     imageBackground: `bg-the-grand-budapest-hotel.jpg`,

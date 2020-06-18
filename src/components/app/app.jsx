@@ -21,20 +21,20 @@ export default class App extends PureComponent {
           </Route>
         </Switch>
       </BrowserRouter>
-    )
+    );
   }
 
   _renderApp() {
     const {films} = this.props;
     return <Main films={films}/>;
   }
-};
+}
 
 App.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
   })).isRequired
 };

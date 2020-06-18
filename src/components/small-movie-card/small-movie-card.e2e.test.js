@@ -9,9 +9,9 @@ Enzyme.configure({
 
 const film = {
   title: `Pulp Fiction`,
-  image: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   genre: `Drama`,
-  releaseDate: `2003`,
+  releaseDate: 2003,
 };
 
 describe(`SmallMovieCard group`, () => {
