@@ -4,59 +4,126 @@ import MoviesList from './movies-list.jsx';
 
 const films = [
   {
+    id: 0,
     title: `The Grand Budapest Hotel`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Drama`,
     releaseDate: 2001,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 10,
+    ratingCount: 240,
+    description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Wes Andreson`,
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 1,
     title: `Bohemian Rhapsody`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Comedy`,
     releaseDate: 2014,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 6.6,
+    ratingCount: 260,
+    description: `In the ro, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Random Name`,
+    starring: [`Edward Norton`, `Jude Law`, `Willem Dafoe`, `Bill Murray`]
   },
   {
+    id: 2,
     title: `Macbeth`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Comedy`,
     releaseDate: 2000,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 2.3,
+    ratingCount: 140,
+    description: `In the 193 concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Bradley Caldwell`,
+    starring: [`Bill Murray`, `Jude Law`, `Willem Dafoe`, `Edward Norton`]
   },
   {
+    id: 3,
     title: `Aviator`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Comedy`,
     releaseDate: 2012,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 1.2,
+    ratingCount: 60,
+    description: `In the uropean ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Junior Hanna`,
+    starring: [`Bill Murray`, `Edward Norton`, `Willem Dafoe`, `Jude Law`]
   },
   {
+    id: 4,
     title: `We need to talk about Kevin`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Crime`,
     releaseDate: 2018,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 2.3,
+    ratingCount: 24,
+    description: ` European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Fannie Valencia`,
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 5,
     title: `What We Do in the Shadows`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Drama`,
     releaseDate: 2005,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 3.5,
+    ratingCount: 24,
+    description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided oFiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Lily-Ann Espinoza`,
+    starring: [`Polly Gibson`, `Edward Norton`, `Maxine Britt`, `Willem Dafoe`]
   },
   {
+    id: 6,
     title: `Pulp Fiction`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Drama`,
     releaseDate: 2003,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 5.5,
+    ratingCount: 20,
+    description: `In the 1930s, tsort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Gabriela Garza`,
+    starring: [`Maxine Britt`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 7,
     title: `No Country for Old Men`,
-    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Comedy`,
     releaseDate: 2014,
+    imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+    imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: 6.7,
+    ratingCount: 40,
+    description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resoe H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    director: `Herman Alston`,
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Maxine Britt`]
   },
 ];
 
 it(`MoviesList should render correct`, () => {
-  const tree = renderer
-    .create(<MoviesList films={films} />)
-    .toJSON();
+  const tree = renderer.create(
+      <MoviesList
+        films={films}
+        onCardClick={() => {}}
+      />
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
