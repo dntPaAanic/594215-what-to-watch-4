@@ -16,7 +16,7 @@ const getRatingLevel = (ratingScore) => {
       return `Good`;
     case (ratingScore < RatingLevel.AWESOME):
       return `Very good`;
-    case ratingScore = RatingLevel.AWESOME:
+    case (ratingScore === RatingLevel.AWESOME):
       return `Awesome`;
     default:
       break;
