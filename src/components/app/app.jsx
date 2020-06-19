@@ -37,7 +37,7 @@ export default class App extends PureComponent {
     const {title, genre, releaseDate, films} = this.props;
     const {currentMovie} = this.state;
 
-    if (currentMovie) {
+    if (currentMovie !==null) {
       return <MoviePage
         film={films[currentMovie]}
       />;

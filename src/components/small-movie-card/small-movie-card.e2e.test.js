@@ -8,7 +8,7 @@ Enzyme.configure({
 });
 
 const film = {
-  id: 0,
+  id: 7,
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   releaseDate: 2001,
@@ -35,9 +35,10 @@ describe(`SmallMovieCard group`, () => {
         onCardMouseLeave={cardMouseLeaveHandler}
       />);
 
-  it(`SmallMovieCard title click is correct`, () => {
+  it(`SmallMovieCard card click is correct`, () => {
     smallMovieCard.simulate(`click`, {preventDefault() {}});
     expect(cardClickHandler).toHaveBeenCalledTimes(1);
+    expect(cardClickHandler.mock.calls[0][0]).toEqual(film.id);
   });
 
   it(`SmallMovieCard mouseenter is correct`, () => {
