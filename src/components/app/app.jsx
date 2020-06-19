@@ -7,6 +7,11 @@ import MoviePage from '../movie-page/movie-page.jsx';
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
+    this._handleSmallMovieCardClick = this._handleSmallMovieCardClick.bind(this);
+
+    this.state = {
+      currentMovie: null
+    };
   }
 
   render() {
@@ -19,7 +24,9 @@ export default class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-movie-page">
-            <MoviePage film={films[0]}/>
+            <MoviePage
+              film={films[0]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -28,6 +35,13 @@ export default class App extends PureComponent {
 
   _renderApp() {
     const {title, genre, releaseDate, films} = this.props;
+    const {currentMovie} = this.state;
+
+    if (currentMovie) {
+      return <MoviePage
+        film={films[currentMovie]}
+      />;
+    }
 
     return (
       <Main
@@ -35,8 +49,13 @@ export default class App extends PureComponent {
         genre={genre}
         releaseDate={releaseDate}
         films={films}
+        onCardClick={this._handleSmallMovieCardClick}
       />
     );
+  }
+
+  _handleSmallMovieCardClick(currentMovie) {
+    this.setState({currentMovie});
   }
 }
 
@@ -45,6 +64,7 @@ App.propTypes = {
   genre: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,

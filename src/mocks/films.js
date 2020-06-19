@@ -1,5 +1,6 @@
 const films = [
   {
+    id: 0,
     title: `The Grand Budapest Hotel`,
     genre: `Drama`,
     releaseDate: 2001,
@@ -13,6 +14,7 @@ const films = [
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 1,
     title: `Bohemian Rhapsody`,
     genre: `Comedy`,
     releaseDate: 2014,
@@ -26,6 +28,7 @@ const films = [
     starring: [`Edward Norton`, `Jude Law`, `Willem Dafoe`, `Bill Murray`]
   },
   {
+    id: 2,
     title: `Macbeth`,
     genre: `Comedy`,
     releaseDate: 2000,
@@ -39,6 +42,7 @@ const films = [
     starring: [`Bill Murray`, `Jude Law`, `Willem Dafoe`, `Edward Norton`]
   },
   {
+    id: 3,
     title: `Aviator`,
     genre: `Comedy`,
     releaseDate: 2012,
@@ -52,6 +56,7 @@ const films = [
     starring: [`Bill Murray`, `Edward Norton`, `Willem Dafoe`, `Jude Law`]
   },
   {
+    id: 4,
     title: `We need to talk about Kevin`,
     genre: `Crime`,
     releaseDate: 2018,
@@ -65,6 +70,7 @@ const films = [
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 5,
     title: `What We Do in the Shadows`,
     genre: `Drama`,
     releaseDate: 2005,
@@ -78,6 +84,7 @@ const films = [
     starring: [`Polly Gibson`, `Edward Norton`, `Maxine Britt`, `Willem Dafoe`]
   },
   {
+    id: 6,
     title: `Pulp Fiction`,
     genre: `Drama`,
     releaseDate: 2003,
@@ -91,6 +98,7 @@ const films = [
     starring: [`Maxine Britt`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
   },
   {
+    id: 7,
     title: `No Country for Old Men`,
     genre: `Comedy`,
     releaseDate: 2014,

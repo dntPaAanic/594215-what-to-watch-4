@@ -164,6 +164,7 @@ const MoviePage = (props) => {
 
 MoviePage.propTypes = {
   film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     imagePreview: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
