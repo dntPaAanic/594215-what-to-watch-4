@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SmallMovieCard from './small-movie-card.jsx';
+import MoviePage from './movie-page.jsx';
 
 const film = {
   id: 0,
@@ -17,14 +17,10 @@ const film = {
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
 };
 
-
-it(`SmallMovieCard should render Fantastic Beasts`, () =>{
+it(`MoviePage should render correct`, () => {
   const tree = renderer.create(
-      <SmallMovieCard
+      <MoviePage
         film={film}
-        onCardClick={() => {}}
-        onCardMouseEnter={() => {}}
-        onCardMouseLeave={() => {}}
       />
   ).toJSON();
 
