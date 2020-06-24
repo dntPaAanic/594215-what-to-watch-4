@@ -15,7 +15,8 @@ const films = [
     ratingCount: 240,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Wes Andreson`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 1,
@@ -29,7 +30,8 @@ const films = [
     ratingCount: 260,
     description: `In the ro, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Random Name`,
-    starring: [`Edward Norton`, `Jude Law`, `Willem Dafoe`, `Bill Murray`]
+    starring: [`Edward Norton`, `Jude Law`, `Willem Dafoe`, `Bill Murray`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 2,
@@ -43,7 +45,8 @@ const films = [
     ratingCount: 140,
     description: `In the 193 concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Bradley Caldwell`,
-    starring: [`Bill Murray`, `Jude Law`, `Willem Dafoe`, `Edward Norton`]
+    starring: [`Bill Murray`, `Jude Law`, `Willem Dafoe`, `Edward Norton`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 3,
@@ -57,7 +60,8 @@ const films = [
     ratingCount: 60,
     description: `In the uropean ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Junior Hanna`,
-    starring: [`Bill Murray`, `Edward Norton`, `Willem Dafoe`, `Jude Law`]
+    starring: [`Bill Murray`, `Edward Norton`, `Willem Dafoe`, `Jude Law`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 4,
@@ -71,7 +75,8 @@ const films = [
     ratingCount: 24,
     description: ` European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Fannie Valencia`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 5,
@@ -85,7 +90,8 @@ const films = [
     ratingCount: 24,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided oFiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Lily-Ann Espinoza`,
-    starring: [`Polly Gibson`, `Edward Norton`, `Maxine Britt`, `Willem Dafoe`]
+    starring: [`Polly Gibson`, `Edward Norton`, `Maxine Britt`, `Willem Dafoe`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 6,
@@ -99,7 +105,8 @@ const films = [
     ratingCount: 20,
     description: `In the 1930s, tsort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Gabriela Garza`,
-    starring: [`Maxine Britt`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Maxine Britt`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 7,
@@ -113,7 +120,8 @@ const films = [
     ratingCount: 40,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resoe H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
     director: `Herman Alston`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Maxine Britt`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Maxine Britt`],
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 ];
 
@@ -122,7 +130,11 @@ it(`MoviesList should render correct`, () => {
       <MoviesList
         films={films}
         onCardClick={() => {}}
-      />
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

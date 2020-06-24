@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SmallMovieCard should render Fantastic Beasts 1`] = `
+exports[`SmallMovieCard should render correct 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -10,10 +10,8 @@ exports[`SmallMovieCard should render Fantastic Beasts 1`] = `
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="The Grand Budapest Hotel"
+    <video
       height="175"
-      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
     />
   </div>
@@ -22,7 +20,7 @@ exports[`SmallMovieCard should render Fantastic Beasts 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="#"
     >
       The Grand Budapest Hotel
     </a>

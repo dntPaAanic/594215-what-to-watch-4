@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import VideoPlayer from './video-player.jsx';
 
 const film = {
   id: 0,
@@ -18,12 +18,18 @@ const film = {
   previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
 
-it(`MoviePage should render correct`, () => {
+it(`VideoPlayer should render correct`, () => {
   const tree = renderer.create(
-      <MoviePage
-        film={film}
-      />
-  ).toJSON();
+      <VideoPlayer
+        src={film.previewSrc}
+        isPlaying={false}
+        previewImage={film.imagePreview}
+        muted={true}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

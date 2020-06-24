@@ -266,10 +266,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="The Grand Budapest Hotel"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -278,7 +276,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               The Grand Budapest Hotel
             </a>
@@ -293,10 +291,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Bohemian Rhapsody"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -305,7 +301,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Bohemian Rhapsody
             </a>
@@ -320,10 +316,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Macbeth"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -332,7 +326,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Macbeth
             </a>
@@ -347,10 +341,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Aviator"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -359,7 +351,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Aviator
             </a>
@@ -374,10 +366,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="We need to talk about Kevin"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -386,7 +376,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               We need to talk about Kevin
             </a>
@@ -401,10 +391,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="What We Do in the Shadows"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -413,7 +401,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               What We Do in the Shadows
             </a>
@@ -428,10 +416,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Pulp Fiction"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -440,7 +426,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Pulp Fiction
             </a>
@@ -455,10 +441,8 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="No Country for Old Men"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -467,7 +451,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               No Country for Old Men
             </a>
