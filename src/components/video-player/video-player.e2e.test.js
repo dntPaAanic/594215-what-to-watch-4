@@ -1,6 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import VideoPlayer from "./video-player";
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const film = {
   id: 0,
@@ -18,12 +23,23 @@ const film = {
   previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
 
-it(`MoviePage should render correct`, () => {
-  const tree = renderer.create(
-      <MoviePage
-        film={film}
+const getPlayer = (isPlaying) => {
+  return mount(
+      <VideoPlayer
+        src={film.previewSrc}
+        isPlaying={isPlaying}
+        previewImage={film.imagePreview}
+        muted={true}
       />
-  ).toJSON();
+  );
+};
 
-  expect(tree).toMatchSnapshot();
+describe(`VideoPlayer play state true`, () => {
+  it(`VideoPlayer state is true when playing`, () => {
+    expect(getPlayer(true).state().isPlaying).toBe(true);
+  });
+
+  it(`VideoPlayer state is false when pause`, () => {
+    expect(getPlayer(false).state().isPlaying).toBe(false);
+  });
 });

@@ -1,3 +1,4 @@
+const PREVIEW_DELAY = 1000;
 const RatingLevel = {
   BAD: 0,
   NORMAL: 3,
@@ -24,4 +25,4 @@ const getRatingLevel = (ratingScore) => {
   return null;
 };
 
-export {getRatingLevel};
+export {PREVIEW_DELAY, getRatingLevel};
