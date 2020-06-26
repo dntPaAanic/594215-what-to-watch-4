@@ -56,7 +56,8 @@ MoviesList.propTypes = {
     ratingCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired
   })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };
