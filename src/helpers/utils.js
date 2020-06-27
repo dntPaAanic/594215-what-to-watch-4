@@ -1,11 +1,4 @@
-const PREVIEW_DELAY = 1000;
-const RatingLevel = {
-  BAD: 0,
-  NORMAL: 3,
-  GOOD: 5,
-  VERY_GOOD: 8,
-  AWESOME: 10
-};
+import {RatingLevel} from './const.js';
 
 const getRatingLevel = (ratingScore) => {
   switch (true) {
@@ -25,4 +18,4 @@ const getRatingLevel = (ratingScore) => {
   return null;
 };
 
-export {PREVIEW_DELAY, getRatingLevel};
+export {getRatingLevel};

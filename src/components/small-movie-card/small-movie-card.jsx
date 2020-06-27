@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {PREVIEW_DELAY} from '../../helpers/utils.js';
 import VideoPlayer from '../video-player/video-player.jsx';
+import {PREVIEW_DELAY} from "../../helpers/const";
 
 export default class SmallMovieCard extends React.PureComponent {
   constructor(props) {
