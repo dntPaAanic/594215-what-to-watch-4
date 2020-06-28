@@ -14,7 +14,7 @@ const Tabs = (props) => {
             activeTab === i
               ? `movie-nav__item--active`
               : ``
-          }`} key={tabName}>
+          }`} key={tabName + i}>
             <a href="#" className="movie-nav__link" onClick={(evt) => {
               evt.preventDefault();
               if (activeTab !== i) {

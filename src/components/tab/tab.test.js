@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SmallMovieCard from './small-movie-card.jsx';
+import Tab from './tab.jsx';
 
 const film = {
   id: 0,
@@ -19,17 +19,12 @@ const film = {
   runTime: 200
 };
 
-
-it(`SmallMovieCard should render correct`, () =>{
+it(`Tab component should render correct`, () => {
   const tree = renderer.create(
-      <SmallMovieCard
+      <Tab
         film={film}
-        onCardClick={() => {}}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      }
+        activeTab={0}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
