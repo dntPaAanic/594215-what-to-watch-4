@@ -17,7 +17,7 @@ export default class MoviesList extends PureComponent {
     const {films, onCardClick} = this.props;
 
     return (
-      <div className="catalog__movies-list">
+      <React.Fragment>
         {films.map((film) =>
           <SmallMovieCard
             film={film}
@@ -26,7 +26,7 @@ export default class MoviesList extends PureComponent {
             onCardMouseLeave={this._handleCardMouseLeave}
             key={film.title}
           />)}
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -56,7 +56,8 @@ MoviesList.propTypes = {
     ratingCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.number.isRequired
   })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };

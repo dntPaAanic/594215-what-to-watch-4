@@ -1,8 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -26,6 +27,8 @@ export default class App extends PureComponent {
           <Route exact path="/dev-movie-page">
             <MoviePage
               film={films[0]}
+              similarFilms={films.slice(0, SIMILAR_FILMS_COUNT)}
+              onCardClick={this._handleSmallMovieCardClick}
             />
           </Route>
         </Switch>
@@ -38,9 +41,14 @@ export default class App extends PureComponent {
     const {currentMovie} = this.state;
 
     if (currentMovie !== null) {
-      return <MoviePage
-        film={films[currentMovie]}
-      />;
+      const similarFilms = films.filter((film) => film.genre === films[currentMovie].genre && film.id !== currentMovie).slice(0, SIMILAR_FILMS_COUNT);
+      return (
+        <MoviePage
+          film={films[currentMovie]}
+          similarFilms={similarFilms}
+          onCard={this._handleSmallMovieCardClick}
+        />
+      );
     }
 
     return (
@@ -76,6 +84,7 @@ App.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired
+    previewSrc: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired
   })).isRequired
 };
