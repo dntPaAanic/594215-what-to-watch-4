@@ -46,7 +46,7 @@ export default class App extends PureComponent {
         <MoviePage
           film={films[currentMovie]}
           similarFilms={similarFilms}
-          onCard={this._handleSmallMovieCardClick}
+          onCardClick={this._handleSmallMovieCardClick}
         />
       );
     }
