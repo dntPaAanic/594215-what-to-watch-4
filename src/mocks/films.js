@@ -91,7 +91,7 @@ const films = [
   {
     id: 3,
     title: `Aviator`,
-    genre: `Comedy`,
+    genre: `Thriller`,
     releaseDate: 2012,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
