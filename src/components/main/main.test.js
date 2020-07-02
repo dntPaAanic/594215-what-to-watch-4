@@ -1,6 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import {Main} from './main.jsx';
+
+const GENRE = `Thrillers`;
 
 const movieMock = {
   title: `The Grand Budapest Hotel`,
@@ -147,6 +149,11 @@ it(`Main should render correct`, () => {
         releaseDate={movieMock.releaseDate}
         onCardClick={() =>{}}
         films={films}
+        filterGenres={[GENRE]}
+        filterType={GENRE}
+        onFilterClick={() => {}}
+        showingCards={8}
+        onShowMoreButtonClick={() => {}}
       />, {
         createNodeMock: () => {
           return {};

@@ -1,11 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this._handleSmallMovieCardClick = this._handleSmallMovieCardClick.bind(this);
@@ -46,7 +47,7 @@ export default class App extends PureComponent {
         <MoviePage
           film={films[currentMovie]}
           similarFilms={similarFilms}
-          onCard={this._handleSmallMovieCardClick}
+          onCardClick={this._handleSmallMovieCardClick}
         />
       );
     }
@@ -88,3 +89,10 @@ App.propTypes = {
     runTime: PropTypes.number.isRequired
   })).isRequired
 };
+
+const mapStateToProps = (state) => ({
+  films: state.smallMovieCards,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

@@ -13,7 +13,23 @@ const films = [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 100
+    runTime: 100,
+    comments: [
+      {
+        id: 0,
+        review: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `December 24, 2016`,
+        rating: `8,9`
+      },
+      {
+        id: 1,
+        review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+        author: `Bill Goodykoontz`,
+        date: `November 18, 2015`,
+        rating: `8,0`
+      },
+    ],
   },
   {
     id: 1,
@@ -29,7 +45,16 @@ const films = [
     director: `Random Name`,
     starring: [`Edward Norton`, `Jude Law`, `Willem Dafoe`, `Bill Murray`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 110
+    runTime: 110,
+    comments: [
+      {
+        id: 0,
+        review: `I didnt find it amusing, and while I can appreciate the creativity, its an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2015`,
+        rating: `8,0`
+      },
+    ],
   },
   {
     id: 2,
@@ -45,12 +70,28 @@ const films = [
     director: `Bradley Caldwell`,
     starring: [`Bill Murray`, `Jude Law`, `Willem Dafoe`, `Edward Norton`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 120
+    runTime: 120,
+    comments: [
+      {
+        id: 0,
+        review: `The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.`,
+        author: `Matthew Lickona`,
+        date: `December 20, 2016`,
+        rating: `7,2`
+      },
+      {
+        id: 1,
+        review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+        author: `Bill Goodykoontz`,
+        date: `November 18, 2015`,
+        rating: `8,0`
+      },
+    ],
   },
   {
     id: 3,
     title: `Aviator`,
-    genre: `Comedy`,
+    genre: `Thriller`,
     releaseDate: 2012,
     imagePoster: `the-grand-budapest-hotel-poster.jpg`,
     imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -61,7 +102,16 @@ const films = [
     director: `Junior Hanna`,
     starring: [`Bill Murray`, `Edward Norton`, `Willem Dafoe`, `Jude Law`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 200
+    runTime: 200,
+    comments: [
+      {
+        id: 0,
+        review: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 20, 2016`,
+        rating: `7,6`
+      },
+    ],
   },
   {
     id: 4,
@@ -77,7 +127,16 @@ const films = [
     director: `Fannie Valencia`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 300
+    runTime: 300,
+    comments: [
+      {
+        id: 0,
+        review: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 20, 2016`,
+        rating: `7,6`
+      },
+    ],
   },
   {
     id: 5,
@@ -93,7 +152,8 @@ const films = [
     director: `Lily-Ann Espinoza`,
     starring: [`Polly Gibson`, `Edward Norton`, `Maxine Britt`, `Willem Dafoe`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 160
+    runTime: 160,
+    comments: [],
   },
   {
     id: 6,
@@ -109,7 +169,16 @@ const films = [
     director: `Gabriela Garza`,
     starring: [`Maxine Britt`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 190
+    runTime: 190,
+    comments: [
+      {
+        id: 0,
+        review: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 20, 2016`,
+        rating: `6,6`
+      },
+    ],
   },
   {
     id: 7,
@@ -125,7 +194,8 @@ const films = [
     director: `Herman Alston`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Maxine Britt`],
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    runTime: 122
+    runTime: 122,
+    comments: [],
   },
 ];
 
