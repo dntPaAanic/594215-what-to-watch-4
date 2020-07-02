@@ -150,6 +150,7 @@ it(`App should render correct`, () => {
     filterGenres: [GENRE],
     filterType: GENRE,
     smallMovieCards: films,
+    showingCards: 8
   });
 
   const tree = renderer.create(

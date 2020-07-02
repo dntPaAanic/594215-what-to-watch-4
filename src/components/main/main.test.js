@@ -152,6 +152,8 @@ it(`Main should render correct`, () => {
         filterGenres={[GENRE]}
         filterType={GENRE}
         onFilterClick={() => {}}
+        showingCards={8}
+        onShowMoreButtonClick={() => {}}
       />, {
         createNodeMock: () => {
           return {};

@@ -201,6 +201,11 @@ const films = [
   },
 ];
 
+const FilmsCount = {
+  ON_START: 8,
+  BY_BUTTON_CLICK: 8
+};
+
 const ALL_GENRES = `All genres`;
 const GENRES_MAX_COUNT = 9;
 
@@ -212,7 +217,8 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(void 0, {})).toEqual({
       filterType: ALL_GENRES,
       smallMovieCards: films,
-      filterGenres: allGenres
+      filterGenres: allGenres,
+      showingCards: FilmsCount.ON_START
     });
   });
 
@@ -230,8 +236,9 @@ describe(`Reducer work correctly`, () => {
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for getFilteredSmallMovieCards returns correct action`, () => {
-    expect(ActionCreator.getFilteredSmallMovieCards()).toEqual({
+    expect(ActionCreator.getFilteredSmallMovieCards(`Crime`)).toEqual({
       type: ActionType.GET_FILTERED_MOVIE_LIST,
+      payload: [films[4]]
     });
   });
 
@@ -239,6 +246,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.changeGenreFilter(`Horror`)).toEqual({
       type: ActionType.GENRE_CHANGE,
       filterType: `Horror`
+    });
+  });
+
+  it(`Action creator for incrementShowingCards returns correct action`, () => {
+    expect(ActionCreator.incrementShowingCards()).toEqual({
+      type: ActionType.INCREMENT_SHOWING_CARDS,
+      payload: FilmsCount.BY_BUTTON_CLICK
     });
   });
 });

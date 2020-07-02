@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
+import ShowMore from '../show-more/show-more.jsx';
 import {ActionCreator} from '../../reducer.js';
 
 const Main = (props) => {
-  const {title, genre, releaseDate, films, onCardClick, filterGenres, filterType, onFilterClick} = props;
+  const {title, genre, releaseDate, films, onCardClick, filterGenres, filterType, onFilterClick, onShowMoreButtonClick, showingCards} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -77,14 +78,13 @@ const Main = (props) => {
 
         <div className="catalog__movies-list">
           <MoviesList
-            films={films}
+            films={films.slice(0, showingCards)}
             onCardClick={onCardClick}
           />
         </div>
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        {showingCards < films.length && <ShowMore onShowMoreButtonClick={onShowMoreButtonClick}/>}
+
       </section>
 
       <footer className="page-footer">
@@ -128,18 +128,24 @@ Main.propTypes = {
   filterGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterType: PropTypes.string.isRequired,
   onFilterClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
+  showingCards: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   filterType: state.filterType,
-  filterGenres: state.filterGenres
+  filterGenres: state.filterGenres,
+  showingCards: state.showingCards
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterType) {
     dispatch(ActionCreator.changeGenreFilter(filterType));
-    dispatch(ActionCreator.getFilteredSmallMovieCards());
+    dispatch(ActionCreator.getFilteredSmallMovieCards(filterType));
   },
+  onShowMoreButtonClick() {
+    dispatch(ActionCreator.incrementShowingCards());
+  }
 });
 
 export {Main};
