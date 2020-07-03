@@ -2,19 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
-export default class MoviesList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
-    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
-
-    this.state = {
-      activeSmallMovieCard: null
-    };
-  }
-
-  render() {
-    const {films, onCardClick} = this.props;
+const MoviesList = (props) => {
+  const {films, onCardClick} = props;
 
     return (
       <React.Fragment>
@@ -22,25 +11,10 @@ export default class MoviesList extends PureComponent {
           <SmallMovieCard
             film={film}
             onCardClick={onCardClick}
-            onCardMouseEnter={this._handleCardMouseEnter}
-            onCardMouseLeave={this._handleCardMouseLeave}
             key={film.title}
           />)}
       </React.Fragment>
     );
-  }
-
-  _handleCardMouseEnter(film) {
-    this.setState({
-      activeSmallMovieCard: film
-    });
-  }
-
-  _handleCardMouseLeave() {
-    this.setState({
-      activeSmallMovieCard: null
-    });
-  }
 }
 
 MoviesList.propTypes = {
@@ -61,3 +35,5 @@ MoviesList.propTypes = {
   })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };
+
+export default MoviesList;
