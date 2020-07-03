@@ -15,13 +15,15 @@ const initialState = {
   filterType: ALL_GENRES,
   smallMovieCards: films,
   filterGenres: allGenres,
-  showingCards: FilmsCount.ON_START
+  showingCards: FilmsCount.ON_START,
+  currentMovie: -1
 };
 
 const ActionType = {
   GENRE_CHANGE: `GENRE_CHANGE`,
   GET_FILTERED_MOVIE_LIST: `GET_FILTERED_MOVIE_LIST`,
   INCREMENT_SHOWING_CARDS: `INCREMENT_SHOWING_CARDS`,
+  SET_MOVIE_CARD_ID: `SET_MOVIE_CARD_ID`,
 };
 
 const getFilteredMovies = (movies, filterType) => {
@@ -36,6 +38,7 @@ const ActionCreator = {
   changeGenreFilter: (filterType) => ({type: ActionType.GENRE_CHANGE, filterType}),
   getFilteredSmallMovieCards: (filterType) => ({type: ActionType.GET_FILTERED_MOVIE_LIST, payload: getFilteredMovies(films, filterType)}),
   incrementShowingCards: () => ({type: ActionType.INCREMENT_SHOWING_CARDS, payload: FilmsCount.BY_BUTTON_CLICK}),
+  setMovieCardId: (id) => ({type: ActionType.SET_MOVIE_CARD_ID, payload: id}),
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,6 +51,9 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.INCREMENT_SHOWING_CARDS:
       return Object.assign({}, state, {showingCards: state.showingCards + action.payload});
+
+    case ActionType.SET_MOVIE_CARD_ID:
+      return Object.assign({}, state, {currentMovie: action.payload});
 
   }
 

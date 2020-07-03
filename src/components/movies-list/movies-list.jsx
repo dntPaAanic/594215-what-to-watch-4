@@ -1,21 +1,21 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
 const MoviesList = (props) => {
   const {films, onCardClick} = props;
 
-    return (
-      <React.Fragment>
-        {films.map((film) =>
-          <SmallMovieCard
-            film={film}
-            onCardClick={onCardClick}
-            key={film.title}
-          />)}
-      </React.Fragment>
-    );
-}
+  return (
+    <React.Fragment>
+      {films.map((film) =>
+        <SmallMovieCard
+          film={film}
+          onCardClick={onCardClick}
+          key={film.title}
+        />)}
+    </React.Fragment>
+  );
+};
 
 MoviesList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
