@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
-import withActiveItem from '../../hocs/with-acrive-item.js';
+import withActiveItem from '../../hocs/with-active-item.js';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 import {ActionCreator} from '../../reducer.js';
 
