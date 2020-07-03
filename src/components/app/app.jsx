@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import withActiveItem from '../../hocs/with-acrive-item.js';
+const MoviePageWrapped = withActiveItem(MoviePage);
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 
 class App extends PureComponent {
@@ -26,7 +28,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-movie-page">
-            <MoviePage
+            <MoviePageWrapped
               film={films[0]}
               similarFilms={films.slice(0, SIMILAR_FILMS_COUNT)}
               onCardClick={this._handleSmallMovieCardClick}
@@ -44,7 +46,7 @@ class App extends PureComponent {
     if (currentMovie !== null) {
       const similarFilms = films.filter((film) => film.genre === films[currentMovie].genre && film.id !== currentMovie).slice(0, SIMILAR_FILMS_COUNT);
       return (
-        <MoviePage
+        <MoviePageWrapped
           film={films[currentMovie]}
           similarFilms={similarFilms}
           onCardClick={this._handleSmallMovieCardClick}

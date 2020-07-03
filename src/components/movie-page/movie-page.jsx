@@ -4,26 +4,11 @@ import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 
-export default class MoviePage extends React.Component {
-  constructor(props) {
-    super(props);
+const MoviePage = (props) => {
+  const {film, similarFilms, onCardClick, activeItem: activeTabIndex, onActiveItemChange} = props;
+  const {title, genre, releaseDate, imagePoster, imageBackground} = film;
 
-    this._handleTabClick = this._handleTabClick.bind(this);
-
-    this.state = {
-      activeTabIndex: 0
-    };
-  }
-
-  _handleTabClick(activeTabIndex) {
-    this.setState({activeTabIndex});
-  }
-
-  render() {
-    const {film, similarFilms, onCardClick} = this.props;
-    const {title, genre, releaseDate, imagePoster, imageBackground} = film;
-
-    return (<React.Fragment>
+  return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
@@ -83,10 +68,10 @@ export default class MoviePage extends React.Component {
 
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
-                <Tabs onTabClick={this._handleTabClick} activeTab={this.state.activeTabIndex}/>
+                <Tabs onTabClick={onActiveItemChange} activeTab={activeTabIndex}/>
               </nav>
 
-              <Tab film={film} activeTab={this.state.activeTabIndex}/>
+              <Tab film={film} activeTab={activeTabIndex}/>
 
             </div>
           </div>
@@ -120,8 +105,7 @@ export default class MoviePage extends React.Component {
         </footer>
       </div>
     </React.Fragment>
-    );
-  }
+  );
 }
 
 MoviePage.propTypes = {
@@ -142,6 +126,8 @@ MoviePage.propTypes = {
     runTime: PropTypes.number.isRequired
   }).isRequired,
   onCardClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.number.isRequired,
   similarFilms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -159,3 +145,5 @@ MoviePage.propTypes = {
     runTime: PropTypes.number.isRequired
   })).isRequired
 };
+
+export default MoviePage;

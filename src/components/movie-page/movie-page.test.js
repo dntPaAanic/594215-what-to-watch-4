@@ -143,6 +143,8 @@ it(`MoviePage should render correct`, () => {
         film={films[0]}
         similarFilms={similarFilms}
         onCardClick={() => {}}
+        activeItem={0}
+        onActiveItemChange={() => {}}
       />, {
         createNodeMock: () => {
           return {};
