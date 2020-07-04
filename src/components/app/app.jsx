@@ -20,10 +20,7 @@ class App extends PureComponent {
 
     if (currentMovie >= 0) {
       const selectedMovie = films.find((film) => film.id === currentMovie);
-      // const similarFilms = films.filter((film) => film.genre === films[currentMovie].genre && film.id !== currentMovie).slice(0, SIMILAR_FILMS_COUNT);
-      // const similarFilms = films.filter((film) => film.id !== currentMovie && film.genre === selectedMovie.genre);
-      const similarFilms = films.filter((film) => film.id !== currentMovie);
-
+      const similarFilms = films.filter((film) => film.id !== currentMovie && film.genre === selectedMovie.genre);
       return (
         <MoviePageWrapped
           film={selectedMovie}
