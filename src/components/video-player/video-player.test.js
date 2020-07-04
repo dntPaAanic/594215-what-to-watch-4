@@ -23,7 +23,7 @@ it(`VideoPlayer should render correct`, () => {
       <VideoPlayer
         src={film.previewSrc}
         isPlaying={false}
-        previewImage={film.imagePreview}
+        imagePreview={film.imagePreview}
         muted={true}
       />, {
         createNodeMock: () => {

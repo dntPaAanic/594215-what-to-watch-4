@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player.jsx';
-import {PREVIEW_DELAY} from '../../helpers/const';
+import {PREVIEW_DELAY} from '../../helpers/const.js';
 
 export default class SmallMovieCard extends React.PureComponent {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class SmallMovieCard extends React.PureComponent {
           <VideoPlayer
             src={previewSrc}
             isPlaying={film.id === activeCardId}
-            previewImage={`img/${imagePreview}`}
+            imagePreview={`img/${imagePreview}`}
             muted={true}
           />
         </div>
