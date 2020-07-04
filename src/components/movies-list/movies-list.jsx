@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import withActiveItem from '../../hocs/with-active-item.js';
+
+const SmallMovieCardWrapped = withActiveItem(SmallMovieCard);
 
 const MoviesList = (props) => {
   const {films, onCardClick} = props;
@@ -8,7 +11,7 @@ const MoviesList = (props) => {
   return (
     <React.Fragment>
       {films.map((film) =>
-        <SmallMovieCard
+        <SmallMovieCardWrapped
           film={film}
           onCardClick={onCardClick}
           key={film.title}

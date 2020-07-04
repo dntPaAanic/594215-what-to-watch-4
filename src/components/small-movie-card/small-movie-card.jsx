@@ -11,11 +11,6 @@ export default class SmallMovieCard extends React.PureComponent {
     this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
     this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
 
-    this.state = {
-      isPlaying: false,
-      activeCard: null
-    };
-
     this.timerId = null;
   }
 
@@ -30,30 +25,23 @@ export default class SmallMovieCard extends React.PureComponent {
   }
 
   _handleCardMouseEnter() {
-    const {film} = this.props;
+    const {film, onActiveItemChange} = this.props;
 
-    this.setState({
-      activeCard: film
-    });
     this.timerId = setTimeout(()=> {
-      this.setState({
-        isPlaying: true
-      });
+      onActiveItemChange(film.id);
     }, PREVIEW_DELAY);
   }
 
   _handleCardMouseLeave() {
+    const {onActiveItemChange} = this.props;
     if (this.timerId) {
       clearTimeout(this.timerId);
-      this.setState({
-        activeCard: null,
-        isPlaying: false
-      });
     }
+    onActiveItemChange(-1);
   }
 
   render() {
-    const {film} = this.props;
+    const {film, activeItem: activeCardId} = this.props;
     const {title, imagePreview, previewSrc} = film;
 
     return (
@@ -64,7 +52,7 @@ export default class SmallMovieCard extends React.PureComponent {
         <div className="small-movie-card__image">
           <VideoPlayer
             src={previewSrc}
-            isPlaying={this.state.isPlaying}
+            isPlaying={film.id === activeCardId}
             previewImage={`img/${imagePreview}`}
             muted={true}
           />
@@ -95,5 +83,7 @@ SmallMovieCard.propTypes = {
     runTime: PropTypes.number.isRequired
   }).isRequired,
   onCardClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.number.isRequired,
 };
 
