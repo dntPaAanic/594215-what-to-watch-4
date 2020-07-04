@@ -1,24 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import withActiveItem from '../../hocs/with-active-item.js';
+import {PREVIEW_DELAY} from '../../helpers/const.js';
 
-const SmallMovieCardWrapped = withActiveItem(SmallMovieCard);
+export default class MoviesList extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-const MoviesList = (props) => {
-  const {films, onCardClick} = props;
+    this._handleCardMouseClick = this._handleCardMouseClick.bind(this);
+    this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
+    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
 
-  return (
-    <React.Fragment>
-      {films.map((film) =>
-        <SmallMovieCardWrapped
-          film={film}
-          onCardClick={onCardClick}
-          key={film.title}
-        />)}
-    </React.Fragment>
-  );
-};
+    this.timerId = null;
+  }
+
+  _handleCardMouseClick(id) {
+    const {onCardClick} = this.props;
+
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    onCardClick(id);
+  }
+
+  _handleCardMouseEnter(id) {
+    const {onActiveItemChange} = this.props;
+
+    this.timerId = setTimeout(() => {
+      onActiveItemChange(id);
+    }, PREVIEW_DELAY);
+  }
+
+  _handleCardMouseLeave() {
+    const {onActiveItemChange} = this.props;
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    onActiveItemChange(-1);
+  }
+
+
+  render() {
+    const {films, activeItem: activeCardId} = this.props;
+
+    return (
+      <React.Fragment>
+        {films.map((film) =>
+          <SmallMovieCard
+            film={film}
+            onCardClick={this._handleCardMouseClick}
+            onCardMouseEnter={this._handleCardMouseEnter}
+            onCardMouseLeave={this._handleCardMouseLeave}
+            activeCardId={activeCardId}
+            key={film.title}
+          />)
+        }
+      </React.Fragment>
+    );
+  }
+}
 
 MoviesList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
@@ -36,7 +76,7 @@ MoviesList.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     runTime: PropTypes.number.isRequired
   })).isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onCardClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.number.isRequired,
 };
-
-export default MoviesList;

@@ -25,6 +25,9 @@ it(`SmallMovieCard should render correct`, () =>{
       <SmallMovieCard
         film={film}
         onCardClick={() => {}}
+        onCardMouseEnter={() => {}}
+        onCardMouseLeave={() => {}}
+        activeCardId={0}
       />, {
         createNodeMock: () => {
           return {};

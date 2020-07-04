@@ -5,6 +5,8 @@ import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 import ShowMore from '../show-more/show-more.jsx';
 import {ActionCreator} from '../../reducer.js';
+import withActiveItem from '../../hocs/with-active-item.js';
+const MoviesListWrapped = withActiveItem(MoviesList);
 
 const Main = (props) => {
   const {title, genre, releaseDate, films, onCardClick, filterGenres, filterType, onFilterClick, onShowMoreButtonClick, showingCards} = props;
@@ -77,7 +79,7 @@ const Main = (props) => {
         />
 
         <div className="catalog__movies-list">
-          <MoviesList
+          <MoviesListWrapped
             films={films.slice(0, showingCards)}
             onCardClick={onCardClick}
           />

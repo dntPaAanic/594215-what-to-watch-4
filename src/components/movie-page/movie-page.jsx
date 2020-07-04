@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
+import withActiveItem from "../../hocs/with-active-item.js";
+
+const MoviesListWrapped = withActiveItem(MoviesList);
 
 const MoviePage = (props) => {
   const {film, similarFilms, onCardClick, activeItem: activeTabIndex, onActiveItemChange} = props;
@@ -83,7 +86,7 @@ const MoviePage = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          <MoviesList
+          <MoviesListWrapped
             films={similarFilms}
             onCardClick={onCardClick}
           />
