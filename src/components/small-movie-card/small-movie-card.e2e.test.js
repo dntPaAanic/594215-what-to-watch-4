@@ -26,28 +26,33 @@ const film = {
 
 describe(`SmallMovieCard group`, () => {
   const cardClickHandler = jest.fn();
+  const cardMouseEnterHandler = jest.fn();
+  const cardMouseLeaveHandler = jest.fn();
 
-  const smallMovieCard = shallow(
+  const wrapper = shallow(
       <SmallMovieCard
         film={film}
         onCardClick={cardClickHandler}
-      />
-  );
+        onCardMouseEnter={cardMouseEnterHandler}
+        onCardMouseLeave={cardMouseLeaveHandler}
+        activeCardId={0}
+      />);
+  const smallCard = wrapper.find(`article`);
 
   it(`SmallMovieCard card click is correct`, () => {
-    smallMovieCard.simulate(`click`, {preventDefault() {}});
+    smallCard.simulate(`click`, {preventDefault() {}});
     expect(cardClickHandler).toHaveBeenCalledTimes(1);
     expect(cardClickHandler.mock.calls[0][0]).toEqual(film.id);
   });
 
   it(`SmallMovieCard mouseenter event is correct`, () => {
-    smallMovieCard.simulate(`mouseenter`);
-    expect(smallMovieCard.state().activeCard).toEqual(film);
+    smallCard.simulate(`mouseenter`);
+    expect(cardMouseEnterHandler).toHaveBeenCalledTimes(1);
+    expect(cardMouseEnterHandler).toBeCalledWith(film.id);
   });
 
   it(`SmallMovieCard mouseleave event is correct`, () => {
-    smallMovieCard.simulate(`mouseleave`);
-    expect(smallMovieCard.state().isPlaying).toBe(false);
-    expect(smallMovieCard.state().activeCard).toEqual(null);
+    smallCard.simulate(`mouseleave`);
+    expect(cardMouseLeaveHandler).toHaveBeenCalledTimes(1);
   });
 });

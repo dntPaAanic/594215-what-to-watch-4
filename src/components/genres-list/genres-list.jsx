@@ -26,7 +26,6 @@ const GenresList = (props) => {
     </ul>
   );
 };
-
 GenresList.propTypes = {
   filterGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterType: PropTypes.string.isRequired,

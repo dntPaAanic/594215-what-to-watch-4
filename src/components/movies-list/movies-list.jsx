@@ -1,45 +1,62 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import {PREVIEW_DELAY} from '../../helpers/const.js';
 
-export default class MoviesList extends PureComponent {
+export default class MoviesList extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._handleCardMouseClick = this._handleCardMouseClick.bind(this);
     this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
     this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
 
-    this.state = {
-      activeSmallMovieCard: null
-    };
+    this.timerId = null;
   }
 
+  _handleCardMouseClick(id) {
+    const {onCardClick} = this.props;
+
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    onCardClick(id);
+  }
+
+  _handleCardMouseEnter(id) {
+    const {onActiveItemChange} = this.props;
+
+    this.timerId = setTimeout(() => {
+      onActiveItemChange(id);
+    }, PREVIEW_DELAY);
+  }
+
+  _handleCardMouseLeave() {
+    const {onActiveItemChange} = this.props;
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    onActiveItemChange(-1);
+  }
+
+
   render() {
-    const {films, onCardClick} = this.props;
+    const {films, activeItem: activeCardId} = this.props;
 
     return (
       <React.Fragment>
         {films.map((film) =>
           <SmallMovieCard
             film={film}
-            onCardClick={onCardClick}
+            onCardClick={this._handleCardMouseClick}
             onCardMouseEnter={this._handleCardMouseEnter}
             onCardMouseLeave={this._handleCardMouseLeave}
+            activeCardId={activeCardId}
             key={film.title}
-          />)}
+          />)
+        }
       </React.Fragment>
     );
-  }
-
-  _handleCardMouseEnter(film) {
-    this.setState({
-      activeSmallMovieCard: film
-    });
-  }
-
-  _handleCardMouseLeave() {
-    this.setState({
-      activeSmallMovieCard: null
-    });
   }
 }
 
@@ -59,5 +76,7 @@ MoviesList.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     runTime: PropTypes.number.isRequired
   })).isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onCardClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.number.isRequired,
 };

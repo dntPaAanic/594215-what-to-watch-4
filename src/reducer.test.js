@@ -218,7 +218,8 @@ describe(`Reducer work correctly`, () => {
       filterType: ALL_GENRES,
       smallMovieCards: films,
       filterGenres: allGenres,
-      showingCards: FilmsCount.ON_START
+      showingCards: FilmsCount.ON_START,
+      currentMovie: -1
     });
   });
 
@@ -230,6 +231,21 @@ describe(`Reducer work correctly`, () => {
       filterType: `Comedy`
     })).toEqual({
       filterType: `Comedy`,
+    });
+  });
+
+  it(`Reducer should correctly increment showingCardsCount by a given value`, () => {
+    expect(reducer({
+      movieCards: films,
+      filterType: ALL_GENRES,
+      showingCards: 1
+    }, {
+      type: ActionType.INCREMENT_SHOWING_CARDS,
+      payload: 1
+    })).toEqual({
+      movieCards: films,
+      filterType: ALL_GENRES,
+      showingCards: 2
     });
   });
 });
@@ -253,6 +269,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.incrementShowingCards()).toEqual({
       type: ActionType.INCREMENT_SHOWING_CARDS,
       payload: FilmsCount.BY_BUTTON_CLICK
+    });
+  });
+
+  it(`Action creator for setMovieCardId returns correct action`, () => {
+    expect(ActionCreator.setMovieCardId(1)).toEqual({
+      type: ActionType.SET_MOVIE_CARD_ID,
+      payload: 1
     });
   });
 });
