@@ -1,11 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app/app.jsx';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
-import {reducer} from './reducer.js';
+import renderer from 'react-test-renderer';
+import PropTypes from 'prop-types';
+import withFullPlayer from './with-full-player.js';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
 const movieMock = {
   id: 0,
@@ -40,12 +37,37 @@ const movieMock = {
   ],
 };
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App
-        mainMovie={movieMock}
-      />
-    </Provider>,
-    document.querySelector(`#root`)
-);
 
+const TestComponent = (props) => {
+  const {children} = props;
+  return (
+    <div>
+      {children}
+    </div>
+  );
+};
+
+TestComponent.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+};
+
+const TestComponentWrapped = withFullPlayer(TestComponent);
+
+it(`withFullPlayer is rendered correctly`, () => {
+  const tree = renderer.create((
+    <TestComponentWrapped
+      autoPlay={false}
+      film={movieMock}
+      muted={false}
+    />), {
+    createNodeMock() {
+      return {};
+    }
+  }
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});

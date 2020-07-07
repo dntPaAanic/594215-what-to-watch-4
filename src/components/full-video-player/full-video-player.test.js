@@ -1,13 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app/app.jsx';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
-import {reducer} from './reducer.js';
+import renderer from 'react-test-renderer';
+import FullVideoPlayer from './full-video-player.jsx';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
-
-const movieMock = {
+const film = {
   id: 0,
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
@@ -40,12 +35,25 @@ const movieMock = {
   ],
 };
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App
-        mainMovie={movieMock}
-      />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+it(`VideoPlayer should render correct`, () => {
+  const tree = renderer
+    .create(
+        <FullVideoPlayer
+          onExitButtonClick={() => {}}
+          film={film}
+          isPlaying={false}
+          onPlayButtonClick={() => {}}
+          onFullscreenButtonClick={() => {}}
+          getElapsedTime={() => {}}
+          getPlaybackProgress={() => {}}
+        >
+          <video />
+        </FullVideoPlayer>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
 
+  expect(tree).toMatchSnapshot();
+});

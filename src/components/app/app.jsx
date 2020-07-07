@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
-import withActiveItem from '../../hocs/with-active-item.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 import {ActionCreator} from '../../reducer.js';
 
@@ -16,7 +16,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {title, genre, releaseDate, films, onCardClick, currentMovie} = this.props;
+    const {mainMovie, films, onCardClick, currentMovie, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
 
     if (currentMovie >= 0) {
       const selectedMovie = films.find((film) => film.id === currentMovie);
@@ -26,23 +26,25 @@ class App extends PureComponent {
           film={selectedMovie}
           similarFilms={similarFilms}
           onCardClick={onCardClick}
+          isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+          onVisibilityChange={onVisibilityChange}
         />
       );
     }
 
     return (
       <Main
-        title={title}
-        genre={genre}
-        releaseDate={releaseDate}
+        mainMovie={mainMovie}
         films={films}
         onCardClick={onCardClick}
+        isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+        onVisibilityChange={onVisibilityChange}
       />
     );
   }
 
   render() {
-    const {films, onCardClick} = this.props;
+    const {films, onCardClick, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
 
     return (
       <BrowserRouter>
@@ -55,6 +57,8 @@ class App extends PureComponent {
               film={films[0]}
               similarFilms={films.slice(0, SIMILAR_FILMS_COUNT)}
               onCardClick={onCardClick}
+              isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+              onVisibilityChange={onVisibilityChange}
             />
           </Route>
         </Switch>
@@ -64,11 +68,22 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  currentMovie: PropTypes.number.isRequired,
+  mainMovie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    imagePreview: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    imagePoster: PropTypes.string.isRequired,
+    imageBackground: PropTypes.string.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    previewSrc: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired
+  }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -84,17 +99,25 @@ App.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     previewSrc: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired
-  })).isRequired
+  })).isRequired,
+  onCardClick: PropTypes.func.isRequired,
+  onVisibilityChange: PropTypes.func.isRequired,
+  currentMovie: PropTypes.number.isRequired,
+  isFullVideoPlayerVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   films: state.smallMovieCards,
-  currentMovie: state.currentMovie
+  currentMovie: state.currentMovie,
+  isFullVideoPlayerVisible: state.isFullVideoPlayerVisible
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(id) {
     dispatch(ActionCreator.setMovieCardId(id));
+  },
+  onVisibilityChange() {
+    dispatch(ActionCreator.changeVisibility());
   }
 });
 
