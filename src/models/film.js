@@ -23,7 +23,7 @@ export default class Film {
     return Object.keys(film).length ? new Film(film) : {};
   }
 
-  static parseFilms(film) {
-    return film.map(Film.parseFilm);
+  static parseFilms(films) {
+    return films.map(Film.parseFilm);
   }
 }

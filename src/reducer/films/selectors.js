@@ -8,7 +8,7 @@ export const getFilms = (state) => state[NameSpace.FILMS].movieCards;
 
 export const getMainMovie = (state) => state[NameSpace.FILMS].mainMovie;
 
-export const changeGenreFilter = (state) => state[NameSpace.FILMS].filterType;
+export const getGenreFilter = (state) => state[NameSpace.FILMS].filterType;
 
 export const getShowingCardsCount = (state) => state[NameSpace.FILMS].showingCards;
 
@@ -26,7 +26,7 @@ export const getGenresList = createSelector(
 
 export const getFilteredMovies = createSelector(
     getFilms,
-    changeGenreFilter,
+    getGenreFilter,
     (movies, genreFilter) => {
       if (genreFilter !== ALL_GENRES) {
         return movies.filter((movie) => movie.genre === genreFilter);

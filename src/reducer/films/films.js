@@ -40,6 +40,9 @@ const Operation = {
       .then(Film.parseFilms)
       .then((response) => {
         dispatch(ActionCreator.loadFilms(response));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
   loadMainMovie: () => (dispatch, getState, api) => {
@@ -48,6 +51,9 @@ const Operation = {
       .then(Film.parseFilm)
       .then((response) => {
         dispatch(ActionCreator.loadMainMovie(response));
+      })
+      .catch((err) => {
+        throw err;
       });
   }
 };

@@ -8,7 +8,7 @@ import {ActionCreator} from '../../reducer/films/films.js';
 import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import {changeGenreFilter, getGenresList, getShowingCardsCount, getMainMovie} from "../../reducer/films/selectors.js";
+import {getGenreFilter, getGenresList, getShowingCardsCount, getMainMovie} from "../../reducer/films/selectors.js";
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
@@ -16,7 +16,6 @@ const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
 const Main = (props) => {
   const {mainMovie, films, filterGenres, onCardClick, filterType, onFilterClick, onShowMoreButtonClick, showingCards, isFullVideoPlayerVisible, onVisibilityChange} = props;
   const {title, genre, releaseDate, imagePoster, imageBackground} = mainMovie;
-
 
   return isFullVideoPlayerVisible
     ? (<FullVideoPlayerWrapped
@@ -165,7 +164,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => ({
   mainMovie: getMainMovie(state),
-  filterType: changeGenreFilter(state),
+  filterType: getGenreFilter(state),
   filterGenres: getGenresList(state),
   showingCards: getShowingCardsCount(state)
 });
