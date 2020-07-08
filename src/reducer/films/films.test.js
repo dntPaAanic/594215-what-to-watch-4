@@ -1,4 +1,43 @@
-import {reducer, ActionType, ActionCreator} from './reducer.js';
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from '../../api.js';
+import {reducer, ActionCreator, ActionType, Operation} from './films.js';
+
+const api = createAPI(() => {});
+
+
+const movieMock = {
+  id: 0,
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseDate: 2001,
+  imagePoster: `the-grand-budapest-hotel-poster.jpg`,
+  imagePreview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  imageBackground: `bg-the-grand-budapest-hotel.jpg`,
+  ratingScore: 10,
+  ratingCount: 240,
+  description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+  director: `Wes Andreson`,
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  runTime: 100,
+  comments: [
+    {
+      id: 0,
+      review: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.`,
+      author: `Kate Muir`,
+      date: `December 24, 2016`,
+      rating: `8,9`
+    },
+    {
+      id: 1,
+      review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+      author: `Bill Goodykoontz`,
+      date: `November 18, 2015`,
+      rating: `8,0`
+    },
+  ],
+};
+
 
 const films = [
   {
@@ -207,31 +246,38 @@ const FilmsCount = {
 };
 
 const ALL_GENRES = `All genres`;
-const GENRES_MAX_COUNT = 9;
-
-const genres = [...new Set(films.map((film) => film.genre))].slice(0, GENRES_MAX_COUNT).sort();
-const allGenres = [ALL_GENRES, ...genres];
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
+      movieCards: [],
+      mainMovie: {},
       filterType: ALL_GENRES,
-      smallMovieCards: films,
-      filterGenres: allGenres,
       showingCards: FilmsCount.ON_START,
       currentMovie: -1,
       isFullVideoPlayerVisible: false
     });
   });
 
-  it(`Reducer should return correctly filter by a given type value`, () => {
+  it(`Reducer should should update movieCards by load films`, () => {
     expect(reducer({
-      filterType: ALL_GENRES,
+      movieCards: [],
     }, {
-      type: ActionType.GENRE_CHANGE,
-      filterType: `Comedy`
+      type: ActionType.LOAD_FILMS,
+      payload: films,
     })).toEqual({
-      filterType: `Comedy`,
+      movieCards: films,
+    });
+  });
+
+  it(`Reducer should update mainMovie by loadMainMovie`, () => {
+    expect(reducer({
+      mainMovie: {},
+    }, {
+      type: ActionType.LOAD_MAIN_MOVIE,
+      payload: movieMock,
+    })).toEqual({
+      mainMovie: movieMock,
     });
   });
 
@@ -262,17 +308,18 @@ describe(`Reducer work correctly`, () => {
 });
 
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for getFilteredSmallMovieCards returns correct action`, () => {
-    expect(ActionCreator.getFilteredSmallMovieCards(`Crime`)).toEqual({
-      type: ActionType.GET_FILTERED_MOVIE_LIST,
-      payload: [films[4]]
+  it(`Action creator for loadFilms returns correct action`, () => {
+    expect(ActionCreator.loadFilms(films)).toEqual({
+      type: ActionType.LOAD_FILMS,
+      payload: films
     });
   });
 
-  it(`Action creator changing genre filter returns correct action`, () => {
-    expect(ActionCreator.changeGenreFilter(`Horror`)).toEqual({
-      type: ActionType.GENRE_CHANGE,
-      filterType: `Horror`
+
+  it(`Action creator for loadMainMovie returns correct action`, () => {
+    expect(ActionCreator.loadMainMovie(movieMock)).toEqual({
+      type: ActionType.LOAD_MAIN_MOVIE,
+      payload: movieMock
     });
   });
 
@@ -293,6 +340,40 @@ describe(`Action creators work correctly`, () => {
   it(`Action creator for changeVisibility returns correct action`, () => {
     expect(ActionCreator.changeVisibility()).toEqual({
       type: ActionType.CHANGE_VISIBILITY,
+    });
+  });
+});
+
+describe(`Operation work correctly`, () => {
+  it(`Should make a correct API call to /films`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const moviesLoader = Operation.loadFilms();
+
+    apiMock.onGet(`/films`).reply(200, []);
+
+    return moviesLoader(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_FILMS,
+        payload: []
+      });
+    });
+  });
+
+  it(`Should make a correct API call to /films/promo`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const moviesLoader = Operation.loadMainMovie();
+
+    apiMock.onGet(`/films/promo`).reply(200, {});
+
+    return moviesLoader(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_MAIN_MOVIE,
+        payload: {}
+      });
     });
   });
 });

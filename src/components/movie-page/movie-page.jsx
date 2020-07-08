@@ -26,7 +26,7 @@ const MoviePage = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`img/${imageBackground}`} alt={title}/>
+            <img src={imageBackground} alt={title}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -77,7 +77,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${imagePoster}`} alt={`${title} poster`} width="218" height="327"/>
+              <img src={imagePoster} alt={`${title} poster`} width="218" height="327"/>
             </div>
 
             <div className="movie-card__desc">

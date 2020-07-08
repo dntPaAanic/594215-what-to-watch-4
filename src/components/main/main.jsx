@@ -4,18 +4,18 @@ import {connect} from 'react-redux';
 import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 import ShowMore from '../show-more/show-more.jsx';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/films/films.js';
 import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import {changeGenreFilter, getGenresList, getShowingCardsCount, getMainMovie} from "../../reducer/films/selectors.js";
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
 
 const Main = (props) => {
-  const {mainMovie, films, onCardClick, filterGenres, filterType, onFilterClick, onShowMoreButtonClick, showingCards, isFullVideoPlayerVisible,
-    onVisibilityChange} = props;
-  const {title, genre, releaseDate} = mainMovie;
+  const {mainMovie, films, filterGenres, onCardClick, filterType, onFilterClick, onShowMoreButtonClick, showingCards, isFullVideoPlayerVisible, onVisibilityChange} = props;
+  const {title, genre, releaseDate, imagePoster, imageBackground} = mainMovie;
 
 
   return isFullVideoPlayerVisible
@@ -28,7 +28,7 @@ const Main = (props) => {
     : (<React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={imageBackground} alt={title}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -52,7 +52,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+              <img src={imagePoster} alt={`${title} poster`} width="218"
                 height="327"/>
             </div>
 
@@ -164,15 +164,15 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filterType: state.filterType,
-  filterGenres: state.filterGenres,
-  showingCards: state.showingCards
+  mainMovie: getMainMovie(state),
+  filterType: changeGenreFilter(state),
+  filterGenres: getGenresList(state),
+  showingCards: getShowingCardsCount(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterType) {
     dispatch(ActionCreator.changeGenreFilter(filterType));
-    dispatch(ActionCreator.getFilteredSmallMovieCards(filterType));
   },
   onShowMoreButtonClick() {
     dispatch(ActionCreator.incrementShowingCards());

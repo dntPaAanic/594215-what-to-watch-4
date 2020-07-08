@@ -67,7 +67,7 @@ const withFullPlayer = (Component) => {
       const {isPlaying} = this.state;
 
       const {film, muted, autoPlay} = this.props;
-      const {imagePoster, previewSrc} = film;
+      const {imagePoster, videoLink} = film;
 
       return (
         <Component
@@ -86,7 +86,7 @@ const withFullPlayer = (Component) => {
             autoPlay={autoPlay}
             onLoadedMetadata={this.loadedMetadataHandler}
             onTimeUpdate={this.timeUpdateHandler}
-            src={previewSrc}
+            src={videoLink}
             muted={muted}
           />
         </Component>
@@ -111,6 +111,7 @@ const withFullPlayer = (Component) => {
       director: PropTypes.string.isRequired,
       starring: PropTypes.arrayOf(PropTypes.string).isRequired,
       previewSrc: PropTypes.string.isRequired,
+      videoLink: PropTypes.string.isRequired,
       runTime: PropTypes.number.isRequired,
     }).isRequired,
   };
