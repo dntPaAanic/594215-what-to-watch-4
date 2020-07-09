@@ -58,30 +58,7 @@ const Operation = {
   }
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.LOAD_FILMS:
-      return Object.assign({}, state, {movieCards: action.payload});
 
-    case ActionType.GENRE_CHANGE:
-      return Object.assign({}, state, {filterType: action.filterType});
-
-    case ActionType.INCREMENT_SHOWING_CARDS:
-      return Object.assign({}, state, {showingCards: state.showingCards + action.payload});
-
-    case ActionType.SET_MOVIE_CARD_ID:
-      return Object.assign({}, state, {currentMovie: action.payload});
-
-    case ActionType.CHANGE_VISIBILITY:
-      return Object.assign({}, state, {isFullVideoPlayerVisible: !state.isFullVideoPlayerVisible});
-
-    case ActionType.LOAD_MAIN_MOVIE:
-      return Object.assign({}, state, {mainMovie: action.payload});
-
-  }
-
-  return state;
-};
 
 
 export {reducer, Operation, ActionType, ActionCreator};
