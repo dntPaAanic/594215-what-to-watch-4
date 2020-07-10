@@ -2,12 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app.jsx';
 
-const movieMock = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseDate: 2014,
-};
-
 const films = [
   {
     id: 0,
@@ -142,12 +136,11 @@ const films = [
 it(`App should render correct`, () => {
   const tree = renderer.create(
       <App
-        title={movieMock.title}
-        genre={movieMock.genre}
-        releaseDate={movieMock.releaseDate}
         films={films}
         currentMovie={0}
         onCardClick={() => {}}
+        isFullVideoPlayerVisible={false}
+        onVisibilityChange={() => {}}
       />, {
         createNodeMock: () => {
           return {};

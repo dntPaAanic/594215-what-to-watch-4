@@ -145,6 +145,8 @@ it(`MoviePage should render correct`, () => {
         onCardClick={() => {}}
         activeItem={0}
         onActiveItemChange={() => {}}
+        isFullVideoPlayerVisible={false}
+        onVisibilityChange={() => {}}
       />, {
         createNodeMock: () => {
           return {};

@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
-import withActiveItem from '../../hocs/with-active-item.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/films/films.js';
+import {getFilteredMovies, getCurrentMovie, isFullPlayerVisible} from "../../reducer/films/selectors.js";
 
 const MoviePageWrapped = withActiveItem(MoviePage);
 
@@ -16,7 +17,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {title, genre, releaseDate, films, onCardClick, currentMovie} = this.props;
+    const {films, onCardClick, currentMovie, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
 
     if (currentMovie >= 0) {
       const selectedMovie = films.find((film) => film.id === currentMovie);
@@ -26,23 +27,24 @@ class App extends PureComponent {
           film={selectedMovie}
           similarFilms={similarFilms}
           onCardClick={onCardClick}
+          isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+          onVisibilityChange={onVisibilityChange}
         />
       );
     }
 
     return (
       <Main
-        title={title}
-        genre={genre}
-        releaseDate={releaseDate}
         films={films}
         onCardClick={onCardClick}
+        isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+        onVisibilityChange={onVisibilityChange}
       />
     );
   }
 
   render() {
-    const {films, onCardClick} = this.props;
+    const {films, onCardClick, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
 
     return (
       <BrowserRouter>
@@ -55,6 +57,8 @@ class App extends PureComponent {
               film={films[0]}
               similarFilms={films.slice(0, SIMILAR_FILMS_COUNT)}
               onCardClick={onCardClick}
+              isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+              onVisibilityChange={onVisibilityChange}
             />
           </Route>
         </Switch>
@@ -64,11 +68,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  currentMovie: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -84,17 +83,25 @@ App.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     previewSrc: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired
-  })).isRequired
+  })).isRequired,
+  onCardClick: PropTypes.func.isRequired,
+  onVisibilityChange: PropTypes.func.isRequired,
+  currentMovie: PropTypes.number.isRequired,
+  isFullVideoPlayerVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  films: state.smallMovieCards,
-  currentMovie: state.currentMovie
+  films: getFilteredMovies(state),
+  currentMovie: getCurrentMovie(state),
+  isFullVideoPlayerVisible: isFullPlayerVisible(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(id) {
     dispatch(ActionCreator.setMovieCardId(id));
+  },
+  onVisibilityChange() {
+    dispatch(ActionCreator.changeVisibility());
   }
 });
 
