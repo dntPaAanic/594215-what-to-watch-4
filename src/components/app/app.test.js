@@ -141,6 +141,7 @@ it(`App should render correct`, () => {
         onCardClick={() => {}}
         isFullVideoPlayerVisible={false}
         onVisibilityChange={() => {}}
+        isMainFilmLoading={false}
       />, {
         createNodeMock: () => {
           return {};

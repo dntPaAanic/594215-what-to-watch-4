@@ -255,7 +255,8 @@ describe(`Reducer work correctly`, () => {
       filterType: ALL_GENRES,
       showingCards: FilmsCount.ON_START,
       currentMovie: -1,
-      isFullVideoPlayerVisible: false
+      isFullVideoPlayerVisible: false,
+      isMainMovieLoading: false
     });
   });
 
@@ -305,6 +306,17 @@ describe(`Reducer work correctly`, () => {
       isFullVideoPlayerVisible: true
     });
   });
+
+  it(`Reducer should correctly set main movie load state by a given value`, () => {
+    expect(reducer({
+      isMainMovieLoading: false,
+    }, {
+      type: ActionType.SET_PRELOADER_STATE,
+      payload: true
+    })).toEqual({
+      isMainMovieLoading: true,
+    });
+  });
 });
 
 describe(`Action creators work correctly`, () => {
@@ -342,6 +354,13 @@ describe(`Action creators work correctly`, () => {
       type: ActionType.CHANGE_VISIBILITY,
     });
   });
+
+  it(`Action creator for setPreloaderState returns correct action`, () => {
+    expect(ActionCreator.setPreloaderState(true)).toEqual({
+      type: ActionType.SET_PRELOADER_STATE,
+      payload: true
+    });
+  });
 });
 
 describe(`Operation work correctly`, () => {
@@ -369,11 +388,21 @@ describe(`Operation work correctly`, () => {
     apiMock.onGet(`/films/promo`).reply(200, {});
 
     return moviesLoader(dispatch, () => {}, api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.LOAD_MAIN_MOVIE,
-        payload: {}
+      expect(dispatch).toHaveBeenCalledTimes(3);
+      expect(dispatch).toHaveBeenNthCalledWith(1,  {
+        type: ActionType.SET_PRELOADER_STATE,
+        payload: true
       });
+      expect(dispatch).toHaveBeenNthCalledWith(2,
+        {
+          type: ActionType.LOAD_MAIN_MOVIE,
+          payload: {}
+        });
+      expect(dispatch).toHaveBeenNthCalledWith(3,
+        {
+          type: ActionType.SET_PRELOADER_STATE,
+          payload: false
+        });
     });
   });
 });

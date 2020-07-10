@@ -7,7 +7,8 @@ import MoviePage from '../movie-page/movie-page.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 import {ActionCreator} from '../../reducer/films/films.js';
-import {getFilteredMovies, getCurrentMovie, isFullPlayerVisible} from "../../reducer/films/selectors.js";
+import {getFilteredMovies, getCurrentMovie, isFullPlayerVisible, isMainMovieLoading} from '../../reducer/films/selectors.js';
+import Preloader from '../preloader/preloader.js';
 
 const MoviePageWrapped = withActiveItem(MoviePage);
 
@@ -17,7 +18,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {films, onCardClick, currentMovie, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
+    const {films, onCardClick, currentMovie, isFullVideoPlayerVisible, onVisibilityChange, isMainFilmLoading} = this.props;
 
     if (currentMovie >= 0) {
       const selectedMovie = films.find((film) => film.id === currentMovie);
@@ -34,12 +35,14 @@ class App extends PureComponent {
     }
 
     return (
-      <Main
-        films={films}
-        onCardClick={onCardClick}
-        isFullVideoPlayerVisible={isFullVideoPlayerVisible}
-        onVisibilityChange={onVisibilityChange}
-      />
+      isMainFilmLoading
+        ? <Preloader />
+        : <Main
+          films={films}
+          onCardClick={onCardClick}
+          isFullVideoPlayerVisible={isFullVideoPlayerVisible}
+          onVisibilityChange={onVisibilityChange}
+        />
     );
   }
 
@@ -88,12 +91,14 @@ App.propTypes = {
   onVisibilityChange: PropTypes.func.isRequired,
   currentMovie: PropTypes.number.isRequired,
   isFullVideoPlayerVisible: PropTypes.bool.isRequired,
+  isMainFilmLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   films: getFilteredMovies(state),
   currentMovie: getCurrentMovie(state),
-  isFullVideoPlayerVisible: isFullPlayerVisible(state)
+  isFullVideoPlayerVisible: isFullPlayerVisible(state),
+  isMainFilmLoading: isMainMovieLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

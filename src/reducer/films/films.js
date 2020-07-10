@@ -12,7 +12,8 @@ const initialState = {
   filterType: ALL_GENRES,
   showingCards: FilmsCount.ON_START,
   currentMovie: -1,
-  isFullVideoPlayerVisible: false
+  isFullVideoPlayerVisible: false,
+  isMainMovieLoading: false
 };
 
 const ActionType = {
@@ -21,7 +22,8 @@ const ActionType = {
   INCREMENT_SHOWING_CARDS: `INCREMENT_SHOWING_CARDS`,
   SET_MOVIE_CARD_ID: `SET_MOVIE_CARD_ID`,
   CHANGE_VISIBILITY: `CHANGE_VISIBILITY`,
-  LOAD_MAIN_MOVIE: `LOAD_MAIN_MOVIE`
+  LOAD_MAIN_MOVIE: `LOAD_MAIN_MOVIE`,
+  SET_PRELOADER_STATE: `SET_PRELOADER_STATE`
 };
 
 const ActionCreator = {
@@ -31,6 +33,7 @@ const ActionCreator = {
   incrementShowingCards: () => ({type: ActionType.INCREMENT_SHOWING_CARDS, payload: FilmsCount.BY_BUTTON_CLICK}),
   setMovieCardId: (id) => ({type: ActionType.SET_MOVIE_CARD_ID, payload: id}),
   changeVisibility: () => ({type: ActionType.CHANGE_VISIBILITY}),
+  setPreloaderState: (isMainMovieLoading) => ({type: ActionType.SET_PRELOADER_STATE, payload: isMainMovieLoading}),
 };
 
 const Operation = {
@@ -46,11 +49,13 @@ const Operation = {
       });
   },
   loadMainMovie: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setPreloaderState(true));
     return api.get(`/films/promo`)
       .then((response) => response.data)
       .then(Film.parseFilm)
       .then((response) => {
         dispatch(ActionCreator.loadMainMovie(response));
+        dispatch(ActionCreator.setPreloaderState(false));
       })
       .catch((err) => {
         throw err;
@@ -78,10 +83,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MAIN_MOVIE:
       return Object.assign({}, state, {mainMovie: action.payload});
 
+    case ActionType.SET_PRELOADER_STATE:
+      return Object.assign({}, state, {isMainMovieLoading: action.payload});
+
   }
 
   return state;
 };
-
 
 export {reducer, Operation, ActionType, ActionCreator};
