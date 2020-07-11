@@ -168,6 +168,8 @@ const films = [
   },
 ];
 
+jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
+
 it(`Main should render correct`, () => {
   const tree = renderer.create(
       <Main mainMovie={movieMock}

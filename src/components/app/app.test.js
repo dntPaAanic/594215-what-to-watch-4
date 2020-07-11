@@ -133,6 +133,8 @@ const films = [
   },
 ];
 
+jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
+
 it(`App should render correct`, () => {
   const tree = renderer.create(
       <App
@@ -142,6 +144,7 @@ it(`App should render correct`, () => {
         isFullVideoPlayerVisible={false}
         onVisibilityChange={() => {}}
         isMainFilmLoading={false}
+        login={() => {}}
       />, {
         createNodeMock: () => {
           return {};

@@ -4,11 +4,13 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
 import {ActionCreator} from '../../reducer/films/films.js';
 import {getFilteredMovies, getCurrentMovie, isFullPlayerVisible, isMainMovieLoading} from '../../reducer/films/selectors.js';
 import Preloader from '../preloader/preloader.js';
+import {Operation as UserOperation} from '../../reducer/user/user.js';
 
 const MoviePageWrapped = withActiveItem(MoviePage);
 
@@ -47,7 +49,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {films, onCardClick, isFullVideoPlayerVisible, onVisibilityChange} = this.props;
+    const {films, onCardClick, isFullVideoPlayerVisible, onVisibilityChange, login} = this.props;
 
     return (
       <BrowserRouter>
@@ -63,6 +65,9 @@ class App extends PureComponent {
               isFullVideoPlayerVisible={isFullVideoPlayerVisible}
               onVisibilityChange={onVisibilityChange}
             />
+          </Route>
+          <Route exact path="/dev-auth">
+            <SignIn onFormSubmit={login} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -88,6 +93,7 @@ App.propTypes = {
     runTime: PropTypes.number.isRequired
   })).isRequired,
   onCardClick: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   onVisibilityChange: PropTypes.func.isRequired,
   currentMovie: PropTypes.number.isRequired,
   isFullVideoPlayerVisible: PropTypes.bool.isRequired,
@@ -107,6 +113,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onVisibilityChange() {
     dispatch(ActionCreator.changeVisibility());
+  },
+  login(data) {
+    dispatch(UserOperation.login(data));
   }
 });
 

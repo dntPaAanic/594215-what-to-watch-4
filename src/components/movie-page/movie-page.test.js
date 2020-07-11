@@ -137,6 +137,8 @@ const films = [
 
 const similarFilms = films.slice(0, SIMILAR_FILMS_COUNT);
 
+jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
+
 it(`MoviePage should render correct`, () => {
   const tree = renderer.create(
       <MoviePage

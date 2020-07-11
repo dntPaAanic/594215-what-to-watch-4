@@ -48,11 +48,7 @@ it(`VideoPlayer should render correct`, () => {
           getPlaybackProgress={() => {}}
         >
           <video />
-        </FullVideoPlayer>, {
-          createNodeMock: () => {
-            return {};
-          }
-        }
+        </FullVideoPlayer>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

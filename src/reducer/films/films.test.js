@@ -1,4 +1,4 @@
-import MockAdapter from "axios-mock-adapter";
+import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api.js';
 import {reducer, ActionCreator, ActionType, Operation} from './films.js';
 
@@ -389,20 +389,20 @@ describe(`Operation work correctly`, () => {
 
     return moviesLoader(dispatch, () => {}, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(3);
-      expect(dispatch).toHaveBeenNthCalledWith(1,  {
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.SET_PRELOADER_STATE,
         payload: true
       });
       expect(dispatch).toHaveBeenNthCalledWith(2,
-        {
-          type: ActionType.LOAD_MAIN_MOVIE,
-          payload: {}
-        });
+          {
+            type: ActionType.LOAD_MAIN_MOVIE,
+            payload: {}
+          });
       expect(dispatch).toHaveBeenNthCalledWith(3,
-        {
-          type: ActionType.SET_PRELOADER_STATE,
-          payload: false
-        });
+          {
+            type: ActionType.SET_PRELOADER_STATE,
+            payload: false
+          });
     });
   });
 });

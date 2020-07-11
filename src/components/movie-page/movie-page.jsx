@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
@@ -40,11 +41,7 @@ const MoviePage = (props) => {
               </a>
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
