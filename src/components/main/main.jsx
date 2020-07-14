@@ -10,6 +10,7 @@ import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {getGenreFilter, getGenresList, getShowingCardsCount, getMainMovie} from '../../reducer/films/selectors.js';
+import {Link} from 'react-router-dom';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
@@ -35,11 +36,11 @@ const Main = (props) => {
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <UserBlock />
@@ -101,11 +102,11 @@ const Main = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

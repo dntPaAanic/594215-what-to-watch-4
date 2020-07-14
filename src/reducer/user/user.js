@@ -1,5 +1,5 @@
 import User from '../../models/user.js';
-
+import history from '../../history.js';
 // const AuthorizationStatus = {
 //   AUTH: `AUTH`,
 //   NO_AUTH: `NO_AUTH`,
@@ -63,6 +63,7 @@ const Operation = {
 
         dispatch(ActionCreator.setAuthUserData(userData));
         dispatch(ActionCreator.setAuthStatus(true));
+        history.push(`/`);
       })
       .catch((err) => {
         throw err;

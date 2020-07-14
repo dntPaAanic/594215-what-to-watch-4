@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from './history';
 
 const TIMEOUT = 5000;
 const BASE_URL = `https://4.react.pages.academy/wtw`;
@@ -22,10 +23,15 @@ export const createAPI = (onUnauthorized) => {
   };
 
   const onFail = (err) => {
-    const {response} = err;
+    const {response, request} = err;
 
     if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
+
+      if (request.responseURL !== BASE_URL + `/login`) {
+        history.push(`/login`);
+      }
+
       throw err;
     }
 

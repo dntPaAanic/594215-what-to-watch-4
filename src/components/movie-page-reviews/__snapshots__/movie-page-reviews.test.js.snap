@@ -28,7 +28,7 @@ exports[`MoviePageReviews should render correct 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-24"
+            dateTime="December 24, 2016"
           >
             December 24, 2016
           </time>
@@ -61,7 +61,7 @@ exports[`MoviePageReviews should render correct 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-24"
+            dateTime="November 18, 2015"
           >
             November 18, 2015
           </time>

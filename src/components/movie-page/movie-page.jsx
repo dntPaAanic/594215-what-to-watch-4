@@ -7,14 +7,18 @@ import UserBlock from '../user-block/user-block.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
+import {Link} from 'react-router-dom';
+import {isAuth} from '../../reducer/user/selectors';
+import {connect} from 'react-redux';
+import {getComments, isCommentsLoaded} from '../../reducer/comments/selectors.js';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
 
 const MoviePage = (props) => {
   const {film, similarFilms, onCardClick, activeItem: activeTabIndex, onActiveItemChange, isFullVideoPlayerVisible,
-    onVisibilityChange} = props;
-  const {title, genre, releaseDate, imagePoster, imageBackground} = film;
+    onVisibilityChange, isAuthed, comments, isLoaded} = props;
+  const {title, genre, releaseDate, imagePoster, imageBackground, id} = film;
 
   return isFullVideoPlayerVisible
     ? (<FullVideoPlayerWrapped
@@ -34,11 +38,11 @@ const MoviePage = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <UserBlock />
@@ -65,7 +69,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {isAuthed && (<Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>)}
               </div>
             </div>
           </div>
@@ -82,7 +86,7 @@ const MoviePage = (props) => {
                 <Tabs onTabClick={onActiveItemChange} activeTab={activeTabIndex === -1 ? 0 : activeTabIndex}/>
               </nav>
 
-              <Tab film={film} activeTab={activeTabIndex === -1 ? 0 : activeTabIndex}/>
+              <Tab film={film} activeTab={activeTabIndex === -1 ? 0 : activeTabIndex} comments={comments} isCommentsLoaded={isLoaded}/>
 
             </div>
           </div>
@@ -103,11 +107,11 @@ const MoviePage = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -156,7 +160,26 @@ MoviePage.propTypes = {
     runTime: PropTypes.number.isRequired
   })).isRequired,
   onVisibilityChange: PropTypes.func.isRequired,
-  isFullVideoPlayerVisible: PropTypes.bool.isRequired
+  isFullVideoPlayerVisible: PropTypes.bool.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.number.isRequired,
+    review: PropTypes.string.isRequired,
+    date: PropTypes.object.isRequired,
+  })),
+  isAuthed: PropTypes.bool.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  isAuthed: isAuth(state),
+  comments: getComments(state),
+  isLoaded: isCommentsLoaded(state),
+});
+
+export {MoviePage};
+export default connect(mapStateToProps)(MoviePage);

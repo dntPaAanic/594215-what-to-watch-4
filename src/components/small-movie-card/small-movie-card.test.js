@@ -19,6 +19,7 @@ const film = {
   runTime: 200
 };
 
+jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 
 it(`SmallMovieCard should render correct`, () =>{
   const tree = renderer.create(

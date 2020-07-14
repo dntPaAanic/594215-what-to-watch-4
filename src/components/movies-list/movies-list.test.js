@@ -133,6 +133,8 @@ const films = [
   },
 ];
 
+jest.mock(`react-router-dom`, () => ({Link: `Link`}));
+
 it(`MoviesList should render correct`, () => {
   const tree = renderer.create(
       <MoviesList

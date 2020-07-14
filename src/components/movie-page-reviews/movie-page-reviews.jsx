@@ -1,32 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import moment from 'moment';
+import {Operation as CommentsOperation} from '../../reducer/comments/comments.js';
 
-const MoviePageReviews = (props) => {
-  const {film} = props;
-  const {comments} = film;
-  return (
-    <React.Fragment>
-      <div className="movie-card__reviews movie-card__row">
-        <div className="movie-card__reviews-col">
-          {comments && comments.map((comment) => {
-            return (
-              <div className="review" key={`${comment.author}-${comment.id}`}>
-                <blockquote className="review__quote">
-                  <p className="review__text">{comment.review}</p>
-                  <footer className="review__details">
-                    <cite className="review__author">{comment.author}</cite>
-                    <time className="review__date" dateTime="2016-12-24">{comment.date}</time>
-                  </footer>
-                </blockquote>
-                <div className="review__rating">{comment.rating}</div>
-              </div>
-            );
-          })}
+class MoviePageReviews extends React.PureComponent {
+  componentDidMount() {
+    const {film, loadComments, isCommentsLoaded} = this.props;
+    if (!isCommentsLoaded) {
+      loadComments(film.id);
+    }
+  }
+
+  render() {
+    const {comments, isCommentsLoaded} = this.props;
+    if (isCommentsLoaded && !comments.length) {
+      return <h2>Be first to leave a review!</h2>;
+    }
+
+    return !isCommentsLoaded ? <h2>Loading..</h2> : (
+      <React.Fragment>
+        <div className="movie-card__reviews movie-card__row">
+          <div className="movie-card__reviews-col">
+            {comments && comments.map((comment) => {
+              return (
+                <div className="review" key={`${comment.author}-${comment.id}`}>
+                  <blockquote className="review__quote">
+                    <p className="review__text">{comment.review}</p>
+                    <footer className="review__details">
+                      <cite className="review__author">{comment.user.name}</cite>
+                      <time className="review__date" dateTime={moment(comment.date).format(`MMMM DD, YYYY`)}>{moment(comment.date).format(`MMMM DD, YYYY`)}</time>
+                    </footer>
+                  </blockquote>
+                  <div className="review__rating">{comment.rating.toFixed(1).toString().replace(`.`, `,`)}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
-};
+      </React.Fragment>
+    );
+  }
+}
 
 MoviePageReviews.propTypes = {
   film: PropTypes.shape({
@@ -44,14 +59,26 @@ MoviePageReviews.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string).isRequired,
     previewSrc: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
+  }).isRequired,
+  loadComments: PropTypes.func.isRequired,
+  isCommentsLoaded: PropTypes.bool.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      review: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      rating: PropTypes.string.isRequired
-    })).isRequired,
-  }).isRequired
+      name: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.number.isRequired,
+    review: PropTypes.string.isRequired,
+    date: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  })),
 };
 
-export default MoviePageReviews;
+const mapDispatchToProps = (dispatch) => ({
+  loadComments(id) {
+    dispatch(CommentsOperation.getComments(id));
+  },
+});
+
+export {MoviePageReviews};
+export default connect(null, mapDispatchToProps)(MoviePageReviews);

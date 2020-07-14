@@ -16,7 +16,7 @@ export const getCurrentMovie = (state) => state[NameSpace.FILMS].currentMovie;
 
 export const isFullPlayerVisible = (state) => state[NameSpace.FILMS].isFullVideoPlayerVisible;
 
-export const isMainMovieLoading = (state) => state[NameSpace.FILMS].isMainMovieLoading;
+export const isAppLoading = (state) => state[NameSpace.FILMS].isAppLoading;
 
 export const getGenresList = createSelector(
     getFilms,
