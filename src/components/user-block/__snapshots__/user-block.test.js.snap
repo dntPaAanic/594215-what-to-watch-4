@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserBlock component should render correct 1`] = `
+<div
+  className="user-block"
+>
+  <div
+    className="user-block__avatar"
+  >
+    <Link
+      to="/mylist"
+    >
+      <img
+        alt="Leeroy Jenkins"
+        height="63"
+        src="https://4.react.pages.academyimg/1.png"
+        width="63"
+      />
+    </Link>
+  </div>
+</div>
+`;

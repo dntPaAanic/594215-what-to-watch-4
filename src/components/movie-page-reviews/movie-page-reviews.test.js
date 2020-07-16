@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePageReviews from './movie-page-reviews.jsx';
+import {MoviePageReviews} from './movie-page-reviews.jsx';
 
 const film = {
   id: 0,
@@ -17,28 +17,38 @@ const film = {
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   runTime: 100,
-  comments: [
-    {
-      id: 0,
-      review: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.`,
-      author: `Kate Muir`,
-      date: `December 24, 2016`,
-      rating: `8,9`
-    },
-    {
-      id: 1,
-      review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
-      author: `Bill Goodykoontz`,
-      date: `November 18, 2015`,
-      rating: `8,0`
-    },
-  ],
 };
+
+const comments = [
+  {
+    id: 0,
+    review: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.`,
+    user: {
+      id: 3,
+      name: `Kate Muir`
+    },
+    date: `December 24, 2016`,
+    rating: 8.9
+  },
+  {
+    id: 1,
+    review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+    user: {
+      id: 66,
+      name: `Bill Goodykoontz`,
+    },
+    date: `November 18, 2015`,
+    rating: 8.0
+  },
+];
 
 it(`MoviePageReviews should render correct`, () => {
   const tree = renderer.create(
       <MoviePageReviews
         film={film}
+        comments={comments}
+        loadComments={() => {}}
+        isCommentsLoaded={true}
       />
   ).toJSON();
 

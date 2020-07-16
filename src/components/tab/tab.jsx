@@ -5,13 +5,15 @@ import MoviePageDetails from '../movie-page-details/movie-page-details.jsx';
 import MoviePageReviews from '../movie-page-reviews/movie-page-reviews.jsx';
 
 const Tab = (props) => {
-  const {film, activeTab} = props;
+  const {film, activeTab, comments, isCommentsLoaded} = props;
   const tabNavComponents = [MoviePageOverview, MoviePageDetails, MoviePageReviews];
   const ActiveTabNavComponent = tabNavComponents[activeTab];
 
   return (
     <ActiveTabNavComponent
       film={film}
+      comments={comments}
+      isCommentsLoaded={isCommentsLoaded}
     />
   );
 };
@@ -34,6 +36,17 @@ Tab.propTypes = {
     runTime: PropTypes.number.isRequired
   }).isRequired,
   activeTab: PropTypes.number.isRequired,
+  isCommentsLoaded: PropTypes.bool.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.number.isRequired,
+    review: PropTypes.string.isRequired,
+    date: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  })),
 };
 
 export default Tab;

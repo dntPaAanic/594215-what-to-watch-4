@@ -58,16 +58,12 @@ TestComponent.propTypes = {
 const TestComponentWrapped = withFullPlayer(TestComponent);
 
 it(`withFullPlayer is rendered correctly`, () => {
-  const tree = renderer.create((
-    <TestComponentWrapped
-      autoPlay={false}
-      film={movieMock}
-      muted={false}
-    />), {
-    createNodeMock() {
-      return {};
-    }
-  }
+  const tree = renderer.create(
+      <TestComponentWrapped
+        autoPlay={false}
+        film={movieMock}
+        muted={false}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

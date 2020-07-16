@@ -1,4 +1,4 @@
-import MockAdapter from "axios-mock-adapter";
+import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api.js';
 import {reducer, ActionCreator, ActionType, Operation} from './films.js';
 
@@ -255,7 +255,8 @@ describe(`Reducer work correctly`, () => {
       filterType: ALL_GENRES,
       showingCards: FilmsCount.ON_START,
       currentMovie: -1,
-      isFullVideoPlayerVisible: false
+      isFullVideoPlayerVisible: false,
+      isAppLoading: false
     });
   });
 
@@ -305,6 +306,17 @@ describe(`Reducer work correctly`, () => {
       isFullVideoPlayerVisible: true
     });
   });
+
+  it(`Reducer should correctly set main movie load state by a given value`, () => {
+    expect(reducer({
+      isAppLoading: false,
+    }, {
+      type: ActionType.SET_PRELOADER_STATE,
+      payload: true
+    })).toEqual({
+      isAppLoading: true,
+    });
+  });
 });
 
 describe(`Action creators work correctly`, () => {
@@ -340,6 +352,13 @@ describe(`Action creators work correctly`, () => {
   it(`Action creator for changeVisibility returns correct action`, () => {
     expect(ActionCreator.changeVisibility()).toEqual({
       type: ActionType.CHANGE_VISIBILITY,
+    });
+  });
+
+  it(`Action creator for setPreloaderState returns correct action`, () => {
+    expect(ActionCreator.setPreloaderState(true)).toEqual({
+      type: ActionType.SET_PRELOADER_STATE,
+      payload: true
     });
   });
 });

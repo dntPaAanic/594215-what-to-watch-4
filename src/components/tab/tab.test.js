@@ -19,11 +19,36 @@ const film = {
   runTime: 200
 };
 
+const comments = [
+  {
+    id: 1,
+    review: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+    user: {
+      id: 31,
+      name: `Kate Muir`
+    },
+    date: `December 24, 2016`,
+    rating: 5.5
+  },
+  {
+    id: 2,
+    review: `Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+    user: {
+      id: 16,
+      name: `Bill Goodykoontz`,
+    },
+    date: `November 18, 2015`,
+    rating: 8.0
+  }
+];
+
 it(`Tab component should render correct`, () => {
   const tree = renderer.create(
       <Tab
         film={film}
         activeTab={0}
+        comments={comments}
+        isCommentsLoaded={true}
       />
   ).toJSON();
 
