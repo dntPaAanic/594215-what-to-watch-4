@@ -11,8 +11,6 @@ const initialState = {
   mainMovie: {},
   filterType: ALL_GENRES,
   showingCards: FilmsCount.ON_START,
-  currentMovie: -1,
-  isFullVideoPlayerVisible: false,
   isAppLoading: false
 };
 
@@ -20,8 +18,6 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   GENRE_CHANGE: `GENRE_CHANGE`,
   INCREMENT_SHOWING_CARDS: `INCREMENT_SHOWING_CARDS`,
-  SET_MOVIE_CARD_ID: `SET_MOVIE_CARD_ID`,
-  CHANGE_VISIBILITY: `CHANGE_VISIBILITY`,
   LOAD_MAIN_MOVIE: `LOAD_MAIN_MOVIE`,
   SET_PRELOADER_STATE: `SET_PRELOADER_STATE`
 };
@@ -31,8 +27,6 @@ const ActionCreator = {
   loadMainMovie: (film) => ({type: ActionType.LOAD_MAIN_MOVIE, payload: film}),
   changeGenreFilter: (filterType) => ({type: ActionType.GENRE_CHANGE, filterType}),
   incrementShowingCards: () => ({type: ActionType.INCREMENT_SHOWING_CARDS, payload: FilmsCount.BY_BUTTON_CLICK}),
-  setMovieCardId: (id) => ({type: ActionType.SET_MOVIE_CARD_ID, payload: id}),
-  changeVisibility: () => ({type: ActionType.CHANGE_VISIBILITY}),
   setPreloaderState: (isAppLoading) => ({type: ActionType.SET_PRELOADER_STATE, payload: isAppLoading}),
 };
 
@@ -71,12 +65,6 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.INCREMENT_SHOWING_CARDS:
       return Object.assign({}, state, {showingCards: state.showingCards + action.payload});
-
-    case ActionType.SET_MOVIE_CARD_ID:
-      return Object.assign({}, state, {currentMovie: action.payload});
-
-    case ActionType.CHANGE_VISIBILITY:
-      return Object.assign({}, state, {isFullVideoPlayerVisible: !state.isFullVideoPlayerVisible});
 
     case ActionType.LOAD_MAIN_MOVIE:
       return Object.assign({}, state, {mainMovie: action.payload});

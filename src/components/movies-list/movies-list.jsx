@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 import {PREVIEW_DELAY} from '../../helpers/const.js';
 
-export default class MoviesList extends React.PureComponent {
+class MoviesList extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -39,12 +39,11 @@ export default class MoviesList extends React.PureComponent {
     onActiveItemChange(-1);
   }
 
-
   render() {
     const {films, activeItem: activeCardId} = this.props;
 
     return (
-      <React.Fragment>
+      <div className="catalog__movies-list">
         {films.map((film) =>
           <SmallMovieCard
             film={film}
@@ -55,7 +54,7 @@ export default class MoviesList extends React.PureComponent {
             key={film.title}
           />)
         }
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -80,3 +79,5 @@ MoviesList.propTypes = {
   onActiveItemChange: PropTypes.func.isRequired,
   activeItem: PropTypes.number.isRequired,
 };
+
+export default MoviesList;
