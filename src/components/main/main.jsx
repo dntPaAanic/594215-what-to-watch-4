@@ -9,14 +9,14 @@ import UserBlock from '../user-block/user-block.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {getGenreFilter, getGenresList, getShowingCardsCount} from '../../reducer/films/selectors.js';
 import {Link} from 'react-router-dom';
-import {isMainMovieFavorite as isMainMovieFavoriteSelector} from "../../reducer/films/selectors.js";
+import {isFavorite  as isFavoriteSelector} from "../../reducer/films/selectors.js";
 import {Operation} from "../../reducer/user/user.js";
 import history from "../../history.js";
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 
 const Main = (props) => {
-  const {mainMovie, films, filterGenres, onCardClick, filterType, onFilterClick, onShowMoreButtonClick, showingCards, toggleFavorite, isMainMovieFavorite} = props;
+  const {mainMovie, films, filterGenres, onCardClick, filterType, onFilterClick, onShowMoreButtonClick, showingCards, toggleFavorite, isFavorite} = props;
   const {title, genre, releaseDate, imagePoster, imageBackground} = mainMovie;
 
   const _handleFavoriteButtonClick = () => {
@@ -64,7 +64,7 @@ const Main = (props) => {
                 <span>Play</span>
               </button>
               <button className="btn btn--list movie-card__button" type="button" onClick={_handleFavoriteButtonClick}>
-                {isMainMovieFavorite
+                {isFavorite
                   ? (<svg viewBox="0 0 18 14" width="18" height="14">
                     <use xlinkHref="#in-list"></use>
                   </svg>)
@@ -145,15 +145,16 @@ Main.propTypes = {
   onShowMoreButtonClick: PropTypes.func.isRequired,
   showingCards: PropTypes.number.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
-  isMainMovieFavorite: PropTypes.bool,
+  isFavorite: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  const {mainMovie} = props;
   return {
     filterType: getGenreFilter(state),
     filterGenres: getGenresList(state),
     showingCards: getShowingCardsCount(state),
-    isMainMovieFavorite: isMainMovieFavoriteSelector(state),
+    isFavorite: isFavoriteSelector(state, mainMovie.id),
   };
 };
 
@@ -165,7 +166,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementShowingCards());
   },
   toggleFavorite(film) {
-    dispatch(Operation.toggleFavorite(film));
+    dispatch(Operation.toggleFavorite(film.id));
   },
 });
 

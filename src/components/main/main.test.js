@@ -20,7 +20,7 @@ it(`Main should render correct`, () => {
         showingCards={8}
         onShowMoreButtonClick={() => {}}
         toggleFavorite={() => {}}
-        isMainMovieFavorite={false}
+        isFavorite={false}
       />, {
         createNodeMock: () => {
           return {};

@@ -39,6 +39,13 @@ const getMovieById = (props, films) => {
   return films.find((film) => film.id === currentMovie);
 };
 
+const formatTime = (min) => {
+  const hours = (min / 60);
+  const minutes = (hours - Math.floor(hours)) * 60;
+
+  return `${Math.floor(hours)}h ${Math.round(minutes)}m`;
+};
+
 const getSimilarFilms = (props, films) => films.filter((film) => film.id !== Number(props.match.params.id) && film.genre === getMovieById(props, films).genre).slice(0, SIMILAR_FILMS_COUNT);
 
-export {getRatingLevel, formatPlayerTime, getMovieById, getSimilarFilms};
+export {getRatingLevel, formatPlayerTime, getMovieById, formatTime,getSimilarFilms};
