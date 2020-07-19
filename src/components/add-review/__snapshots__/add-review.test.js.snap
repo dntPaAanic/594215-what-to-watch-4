@@ -11,7 +11,7 @@ exports[`AddReview tests AddReview should render correct 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="Pulp Fiction"
+        alt="The Grand Budapest Hotel"
         src="bg-the-grand-budapest-hotel.jpg"
       />
     </div>
@@ -60,7 +60,7 @@ exports[`AddReview tests AddReview should render correct 1`] = `
               className="breadcrumbs__link"
               href="movie-page.html"
             >
-              Pulp Fiction
+              The Grand Budapest Hotel
             </a>
           </li>
           <li
@@ -89,7 +89,7 @@ exports[`AddReview tests AddReview should render correct 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="Pulp Fiction poster"
+        alt="The Grand Budapest Hotel poster"
         height="327"
         src="the-grand-budapest-hotel-poster.jpg"
         width="218"

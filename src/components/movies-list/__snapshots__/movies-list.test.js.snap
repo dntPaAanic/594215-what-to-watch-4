@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MoviesList should render correct 1`] = `
-Array [
+<div
+  className="catalog__movies-list"
+>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -35,7 +37,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -69,7 +71,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -103,7 +105,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -137,7 +139,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -171,7 +173,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -205,7 +207,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -239,7 +241,7 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
+  </article>
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
@@ -273,6 +275,6 @@ Array [
         </span>
       </h3>
     </Link>
-  </article>,
-]
+  </article>
+</div>
 `;
