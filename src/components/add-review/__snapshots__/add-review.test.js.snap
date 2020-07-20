@@ -188,6 +188,7 @@ exports[`AddReview tests AddReview should render correct 1`] = `
       >
         <textarea
           className="add-review__textarea"
+          disabled={false}
           id="review-text"
           name="review-text"
           placeholder="Review text"
@@ -197,6 +198,7 @@ exports[`AddReview tests AddReview should render correct 1`] = `
         >
           <button
             className="add-review__btn"
+            disabled={false}
             type="submit"
           >
             Post

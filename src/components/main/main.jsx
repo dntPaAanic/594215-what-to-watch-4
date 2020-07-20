@@ -9,7 +9,7 @@ import UserBlock from '../user-block/user-block.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {getGenreFilter, getGenresList, getShowingCardsCount} from '../../reducer/films/selectors.js';
 import {Link} from 'react-router-dom';
-import {isFavorite  as isFavoriteSelector} from "../../reducer/films/selectors.js";
+import {isFavorite as isFavoriteSelector} from "../../reducer/films/selectors.js";
 import {Operation} from "../../reducer/user/user.js";
 import history from "../../history.js";
 
