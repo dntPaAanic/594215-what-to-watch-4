@@ -36,10 +36,12 @@ const withFullPlayer = (Component) => {
       }
     }
 
-    handleFullscreen() {
-      const video = this._videoRef.current;
+    handleFullscreen(player) {
+      if (document.fullscreenElement === player) {
+        document.exitFullscreen();
+      }
 
-      video.requestFullscreen();
+      player.requestFullscreen();
     }
 
     getPlaybackProgress() {

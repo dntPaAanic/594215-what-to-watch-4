@@ -4,8 +4,8 @@ import {UserBlock} from './user-block.jsx';
 
 const authUserData = {
   id: 1,
-  email: `leeroy.jenkins@gmail.com`,
-  name: `Leeroy Jenkins`,
+  email: `Oliver.conner@gmail.com`,
+  name: `Oliver.conner`,
   avatarUrl: `img/1.png`
 };
 

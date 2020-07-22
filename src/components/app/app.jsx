@@ -1,72 +1,91 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import MyList from '../my-list/my-list.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import AddReview from '../add-review/add-review.jsx';
 import withIsValid from '../../hocs/with-is-valid/with-is-valid.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import {SIMILAR_FILMS_COUNT} from '../../helpers/const.js';
-import {ActionCreator} from '../../reducer/films/films.js';
-import {getFilteredMovies, getCurrentMovie, isFullPlayerVisible, isAppLoading} from '../../reducer/films/selectors.js';
+import {getFilteredMovies, isAppLoading, getMainMovie} from '../../reducer/films/selectors.js';
 import Preloader from '../preloader/preloader.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {Operation as CommentsOperation} from '../../reducer/comments/comments.js';
 import history from '../../history.js';
 import PrivateRoute from '../private-route/private-route.jsx';
+import FullVideoPlayer from '../full-video-player/full-video-player.jsx';
+import withFullPlayer from '../../hocs/with-full-player/with-full-player.js';
+import {getMovieById, getSimilarFilms} from '../../helpers/utils.js';
+import {isAuth} from '../../reducer/user/selectors.js';
 
 const AddReviewWrapped = withIsValid(AddReview);
 const MoviePageWrapped = withActiveItem(MoviePage);
+const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const App = (props) => {
+  const {films, onCardClick, login, isLoading, mainMovie, isAuthed} = props;
 
-  render() {
-    const {films, onCardClick, isFullVideoPlayerVisible, onVisibilityChange, login, isLoading} = this.props;
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path={`/`}
+          render={() => isLoading
+            ? <Preloader/>
+            : <Main films={films} onCardClick={onCardClick} mainMovie={mainMovie} />}
+        />
 
-    return (
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/">
-            {isLoading
+        <Route exact path={`/films/:id`}
+          render={(routerProps) =>
+            isLoading
+              ? <Preloader />
+              : <MoviePageWrapped film={getMovieById(routerProps, films)} similarFilms={getSimilarFilms(routerProps, films)} onCardClick={onCardClick} />
+          }
+        />
+        <Route exact path={`/login`}
+          render={() => isAuthed ? history.push(`/`) : <SignIn onFormSubmit={login} />}
+        />
+        <Route exact path={`/player/:id`}
+          render={(routerProps) =>
+            isLoading
               ? <Preloader/>
-              : <Main films={films} onCardClick={onCardClick} isFullVideoPlayerVisible={isFullVideoPlayerVisible} onVisibilityChange={onVisibilityChange} />}
-          </Route>
-          <Route exact path={`/films/:id`}
-            render={(props) => {
-              const currentMovie = Number(props.match.params.id);
-              const selectedMovie = films.find((film) => film.id === currentMovie);
-              const similarFilms = films.filter((film) => film.id !== currentMovie && film.genre === selectedMovie.genre).slice(0, SIMILAR_FILMS_COUNT);
+              : <FullVideoPlayerWrapped onExitButtonClick = {routerProps.history.goBack} film = {getMovieById(routerProps, films) || mainMovie} autoPlay = {true} muted = {false}/>}
+        />
+        <PrivateRoute exact path={`/films/:id/review`}
+          render={(routerProps) =>
+            <AddReviewWrapped film={getMovieById(routerProps, films)} />
+          }
+        />
+        <PrivateRoute
+          exact path={`/mylist`}
+          render={() => (
+            <MyList onCardClick={onCardClick} />
+          )}
+        />
+      </Switch>
+    </Router>
 
-              return isLoading
-                ? <Preloader />
-                : <MoviePageWrapped film={selectedMovie} similarFilms={similarFilms} onCardClick={onCardClick} isFullVideoPlayerVisible={isFullVideoPlayerVisible} onVisibilityChange={onVisibilityChange} />;
-
-            }}
-          />
-          <Route exact path="/login">
-            <SignIn onFormSubmit={login} />
-          </Route>
-          <PrivateRoute
-            exact
-            path={`/films/:id/review`}
-            render={(props) => {
-              const currentMovie = Number(props.match.params.id);
-              const selectedMovie = films.find((film) => film.id === currentMovie);
-              return <AddReviewWrapped film={selectedMovie} />;
-            }}
-          />
-        </Switch>
-      </Router>
-    );
-  }
-}
+  );
+};
 
 App.propTypes = {
+  mainMovie: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    imagePreview: PropTypes.string,
+    genre: PropTypes.string,
+    releaseDate: PropTypes.number,
+    imagePoster: PropTypes.string,
+    imageBackground: PropTypes.string,
+    ratingScore: PropTypes.number,
+    ratingCount: PropTypes.number,
+    description: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    previewSrc: PropTypes.string,
+    runTime: PropTypes.number
+  }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -85,26 +104,20 @@ App.propTypes = {
   })).isRequired,
   onCardClick: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  onVisibilityChange: PropTypes.func.isRequired,
-  currentMovie: PropTypes.number.isRequired,
-  isFullVideoPlayerVisible: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  isAuthed: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   films: getFilteredMovies(state),
-  currentMovie: getCurrentMovie(state),
-  isFullVideoPlayerVisible: isFullPlayerVisible(state),
-  isLoading: isAppLoading(state)
+  mainMovie: getMainMovie(state),
+  isLoading: isAppLoading(state),
+  isAuthed: isAuth(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(id) {
-    dispatch(ActionCreator.setMovieCardId(id));
     dispatch(CommentsOperation.getComments(id));
-  },
-  onVisibilityChange() {
-    dispatch(ActionCreator.changeVisibility());
   },
   login(data) {
     dispatch(UserOperation.login(data));

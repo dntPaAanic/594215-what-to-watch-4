@@ -1,5 +1,7 @@
 import {RatingLevel} from './const.js';
 
+const SIMILAR_FILMS_COUNT = 4;
+
 const getRatingLevel = (ratingScore) => {
   switch (true) {
     case (ratingScore < RatingLevel.NORMAL):
@@ -31,4 +33,19 @@ const formatPlayerTime = (duration, currentTime) => {
   return `${hoursStr}:${minutesStr}:${secStr}`;
 };
 
-export {getRatingLevel, formatPlayerTime};
+const getMovieById = (props, films) => {
+  const currentMovie = Number(props.match.params.id);
+
+  return films.find((film) => film.id === currentMovie);
+};
+
+const formatTime = (min) => {
+  const hours = (min / 60);
+  const minutes = (hours - Math.floor(hours)) * 60;
+
+  return `${Math.floor(hours)}h ${Math.round(minutes)}m`;
+};
+
+const getSimilarFilms = (props, films) => films.filter((film) => film.id !== Number(props.match.params.id) && film.genre === getMovieById(props, films).genre).slice(0, SIMILAR_FILMS_COUNT);
+
+export {getRatingLevel, formatPlayerTime, getMovieById, formatTime, getSimilarFilms};

@@ -1,4 +1,4 @@
-import React, {Fragment, createRef} from 'react';
+import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Operation} from '../../reducer/comments/comments.js';
@@ -25,12 +25,10 @@ const comment = {
 const AddReview = (props) => {
   const {film, isValid, onIsValidChange, onSubmit} = props;
 
-  const commentRef = createRef();
-  const sendCommentButtonRef = createRef();
+  const [disabled, setDisabled] = useState(false);
 
   const _toggleFormDisability = () => {
-    commentRef.current.disabled = !commentRef.current.disabled;
-    sendCommentButtonRef.current.disabled = !sendCommentButtonRef.current.disabled;
+    setDisabled(!disabled);
   };
 
   const _handleInputChange = (evt) => {
@@ -130,9 +128,9 @@ const AddReview = (props) => {
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={commentRef}/>
+            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" disabled={disabled}/>
             <div className="add-review__submit">
-              {isValid && <button className="add-review__btn" type="submit" ref={sendCommentButtonRef}>Post</button>}
+              {isValid && <button className="add-review__btn" type="submit" disabled={disabled}>Post</button>}
             </div>
           </div>
         </form>

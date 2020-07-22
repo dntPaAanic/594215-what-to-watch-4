@@ -12,9 +12,9 @@ export const getGenreFilter = (state) => state[NameSpace.FILMS].filterType;
 
 export const getShowingCardsCount = (state) => state[NameSpace.FILMS].showingCards;
 
-export const getCurrentMovie = (state) => state[NameSpace.FILMS].currentMovie;
+export const isFavorite = (state, filmId) => state[NameSpace.FILMS].movieCards.find((item) => item.id === filmId).isFavorite;
 
-export const isFullPlayerVisible = (state) => state[NameSpace.FILMS].isFullVideoPlayerVisible;
+export const getFilmById = (state, filmId) => state[NameSpace.FILMS].movieCards.find((item) => item.id === filmId);
 
 export const isAppLoading = (state) => state[NameSpace.FILMS].isAppLoading;
 

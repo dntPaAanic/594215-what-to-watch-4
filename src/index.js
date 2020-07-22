@@ -11,15 +11,10 @@ import {Operation as UserOperation, ActionCreator as UserActionCreator} from './
 
 const onUnauthorized = () => {
   store.dispatch(UserActionCreator.setAuthStatus(false));
-  // console.log(`onUnauthorized`)
 };
 
 const api = createAPI(onUnauthorized);
 const store = createStore(reducer, compose(applyMiddleware(thunk.withExtraArgument(api)), window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f));
-
-// store.dispatch(FilmsOperation.loadFilms());
-// store.dispatch(FilmsOperation.loadMainMovie());
-// store.dispatch(UserOperation.checkAuth());
 
 const init = () => {
   store.dispatch(ActionCreator.setPreloaderState(true));
