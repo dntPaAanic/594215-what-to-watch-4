@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import {formatTime} from '../../helpers/utils.js';
+import {formatTime} from '../../helpers/utils';
 
 const MoviePageDetails = (props) => {
   const {film} = props;

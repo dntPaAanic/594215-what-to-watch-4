@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Main} from './main.jsx';
-import {films, film} from '../../helpers/test-data.js';
+import {Main} from './main';
+import {films, film} from '../../helpers/test-data';
 
 const GENRE = `Thrillers`;
 

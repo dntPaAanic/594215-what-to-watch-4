@@ -1,10 +1,10 @@
-import React, {Fragment, useState} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Operation} from '../../reducer/comments/comments.js';
-import UserBlock from '../user-block/user-block.jsx';
+import {Operation} from '../../reducer/comments/comments';
+import UserBlock from '../user-block/user-block';
 import {Link} from 'react-router-dom';
-import history from '../../history.js';
+import history from '../../history';
 
 const STARS_COUNT = 5;
 const ValidateRule = {
@@ -25,7 +25,7 @@ const comment = {
 const AddReview = (props) => {
   const {film, isValid, onIsValidChange, onSubmit} = props;
 
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = React.useState(false);
 
   const _toggleFormDisability = () => {
     setDisabled(!disabled);
@@ -119,10 +119,10 @@ const AddReview = (props) => {
           <div className="rating">
             <div className="rating__stars">
               {new Array(STARS_COUNT).fill(``).map((_, index) => (
-                <Fragment key={`${index}_star`}>
+                <React.Fragment key={`${index}_star`}>
                   <input className="rating__input" id={`star-${index}`} type="radio" name="rating" value={index + 1} />
                   <label className="rating__label" htmlFor={`star-${index}`}>Rating ${index}</label>
-                </Fragment>
+                </React.Fragment>
               ))}
             </div>
           </div>

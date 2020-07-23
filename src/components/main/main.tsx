@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import GenresList from '../genres-list/genres-list.jsx';
-import MoviesList from '../movies-list/movies-list.jsx';
-import ShowMore from '../show-more/show-more.jsx';
-import {ActionCreator} from '../../reducer/films/films.js';
-import UserBlock from '../user-block/user-block.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import {getGenreFilter, getGenresList, getShowingCardsCount} from '../../reducer/films/selectors.js';
+import GenresList from '../genres-list/genres-list';
+import MoviesList from '../movies-list/movies-list';
+import ShowMore from '../show-more/show-more';
+import {ActionCreator} from '../../reducer/films/films';
+import UserBlock from '../user-block/user-block';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {getGenreFilter, getGenresList, getShowingCardsCount} from '../../reducer/films/selectors';
 import {Link} from 'react-router-dom';
-import {isFavorite as isFavoriteSelector} from "../../reducer/films/selectors.js";
-import {Operation} from "../../reducer/user/user.js";
-import history from "../../history.js";
+import {isFavorite as isFavoriteSelector} from '../../reducer/films/selectors';
+import {Operation} from '../../reducer/user/user';
+import history from '../../history';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 

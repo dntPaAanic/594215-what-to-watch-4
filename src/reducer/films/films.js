@@ -1,4 +1,4 @@
-import Film from '../../models/film.js';
+import Film from '../../models/film';
 
 const ALL_GENRES = `All genres`;
 const FilmsCount = {

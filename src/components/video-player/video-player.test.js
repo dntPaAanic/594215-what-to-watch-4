@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import VideoPlayer from './video-player.jsx';
-import {film} from '../../helpers/test-data.js';
+import VideoPlayer from './video-player.tsx';
+import {film} from '../../helpers/test-data';
 
 it(`VideoPlayer should render correct`, () => {
   const tree = renderer.create(

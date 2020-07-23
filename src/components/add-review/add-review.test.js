@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {AddReview} from './add-review.jsx';
+import {AddReview} from './add-review';
 import configureStore from 'redux-mock-store';
-import Namespace from '../../reducer/name-space.js';
+import Namespace from '../../reducer/name-space';
 import {Provider} from 'react-redux';
-import {film} from '../../helpers/test-data.js';
+import {film} from '../../helpers/test-data';
 
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 

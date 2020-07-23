@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MoviePageReviews} from './movie-page-reviews.jsx';
-import {film, comments} from '../../helpers/test-data.js';
+import {MoviePageReviews} from './movie-page-reviews';
+import {film, comments} from '../../helpers/test-data';
 
 it(`MoviePageReviews should render correct`, () => {
   const tree = renderer.create(

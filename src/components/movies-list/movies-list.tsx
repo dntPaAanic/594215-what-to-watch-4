@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import {PREVIEW_DELAY} from '../../helpers/const.js';
+import SmallMovieCard from '../small-movie-card/small-movie-card';
+import {PREVIEW_DELAY} from '../../helpers/const';
 
 class MoviesList extends React.PureComponent {
   constructor(props) {

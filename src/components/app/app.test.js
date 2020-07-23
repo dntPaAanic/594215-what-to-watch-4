@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app.jsx';
+import {App} from './app.tsx';
 import configureStore from 'redux-mock-store';
-import Namespace from '../../reducer/name-space.js';
+import Namespace from '../../reducer/name-space';
 import {Provider} from 'react-redux';
-import {films, film} from '../../helpers/test-data.js';
+import {films, film} from '../../helpers/test-data';
 
 jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
 

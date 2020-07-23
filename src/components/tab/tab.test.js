@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Tab from './tab.jsx';
-import {film, comments} from '../../helpers/test-data.js';
+import Tab from './tab.tsx';
+import {film, comments} from '../../helpers/test-data';
 
 it(`Tab component should render correct`, () => {
   const tree = renderer.create(

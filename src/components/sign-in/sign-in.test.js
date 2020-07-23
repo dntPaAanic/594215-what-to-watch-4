@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SignIn from './sign-in.jsx';
+import SignIn from './sign-in';
 
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 

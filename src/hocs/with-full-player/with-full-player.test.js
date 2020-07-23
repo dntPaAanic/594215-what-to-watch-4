@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import PropTypes from 'prop-types';
-import withFullPlayer from './with-full-player.js';
-import {film} from '../../helpers/test-data.js';
+import withFullPlayer from './with-full-player';
+import {film} from '../../helpers/test-data';
 
 const TestComponent = (props) => {
   const {children} = props;

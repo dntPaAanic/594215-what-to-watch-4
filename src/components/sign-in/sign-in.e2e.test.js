@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16/build';
-import SignIn from './sign-in.jsx';
+import SignIn from './sign-in';
 
 jest.mock(`react-router-dom`, () => ({Link: `a`}));
 

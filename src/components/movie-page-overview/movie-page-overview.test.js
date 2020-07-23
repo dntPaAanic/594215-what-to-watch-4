@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePageOverview from './movie-page-overview.jsx';
-import {film} from '../../helpers/test-data.js';
+import MoviePageOverview from './movie-page-overview';
+import {film} from '../../helpers/test-data';
 
 it(`MoviePageOverview should render correct`, () => {
   const tree = renderer.create(

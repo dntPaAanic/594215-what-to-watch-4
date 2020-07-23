@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import VideoPlayer from '../video-player/video-player.jsx';
-import {Link} from "react-router-dom";
+import VideoPlayer from '../video-player/video-player';
+import {Link} from 'react-router-dom';
 
 const SmallMovieCard = (props) => {
   const {film, onCardClick, onCardMouseEnter, onCardMouseLeave, activeCardId} = props;

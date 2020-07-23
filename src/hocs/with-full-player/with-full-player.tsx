@@ -1,6 +1,6 @@
-import React, {createRef} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import {formatPlayerTime} from '../../helpers/utils.js';
+import {formatPlayerTime} from '../../helpers/utils';
 
 
 const withFullPlayer = (Component) => {
@@ -8,7 +8,7 @@ const withFullPlayer = (Component) => {
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this._videoRef = React.createRef();
 
       this.state = {
         isPlaying: false,

@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import MoviePage from './movie-page';
 import configureStore from 'redux-mock-store';
-import Namespace from '../../reducer/name-space.js';
+import Namespace from '../../reducer/name-space';
 import {Provider} from 'react-redux';
-import {films, comments} from '../../helpers/test-data.js';
+import {films, comments} from '../../helpers/test-data';
 
 const SIMILAR_FILMS_COUNT = 4;
 

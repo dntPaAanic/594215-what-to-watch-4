@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../tabs/tabs.jsx';
-import Tab from '../tab/tab.jsx';
-import MoviesList from '../movies-list/movies-list.jsx';
-import UserBlock from '../user-block/user-block.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import Tabs from '../tabs/tabs';
+import Tab from '../tab/tab';
+import MoviesList from '../movies-list/movies-list';
+import UserBlock from '../user-block/user-block';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {Link} from 'react-router-dom';
 import {isAuth} from '../../reducer/user/selectors';
 import {connect} from 'react-redux';
-import {getComments, isCommentsLoaded} from '../../reducer/comments/selectors.js';
-import {Operation} from '../../reducer/user/user.js';
-import {isFavorite as isFavoriteSelector} from '../../reducer/films/selectors.js';
-import history from '../../history.js';
+import {getComments, isCommentsLoaded} from '../../reducer/comments/selectors';
+import {Operation} from '../../reducer/user/user';
+import {isFavorite as isFavoriteSelector} from '../../reducer/films/selectors';
+import history from '../../history';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 

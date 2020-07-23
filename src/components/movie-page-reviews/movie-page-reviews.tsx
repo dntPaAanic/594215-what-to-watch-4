@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import {Operation as CommentsOperation} from '../../reducer/comments/comments.js';
+import {Operation as CommentsOperation} from '../../reducer/comments/comments';
 
 class MoviePageReviews extends React.PureComponent {
   componentDidMount() {

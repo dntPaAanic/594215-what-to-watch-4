@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviesList from './movies-list.jsx';
-import {films} from '../../helpers/test-data.js';
+import MoviesList from './movies-list';
+import {films} from '../../helpers/test-data';
 
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 
