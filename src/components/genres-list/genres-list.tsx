@@ -1,7 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
-const GenresList = (props) => {
+type GenreListProps = {
+  filterGenres: string[];
+  filterType: string;
+  onFilterClick: (genre: string) => void;
+};
+
+const GenresList: React.FunctionComponent<GenreListProps> = (props: GenreListProps) => {
   const {filterGenres, filterType, onFilterClick} = props;
 
   return (
@@ -25,11 +30,6 @@ const GenresList = (props) => {
       })}
     </ul>
   );
-};
-GenresList.propTypes = {
-  filterGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filterType: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
 };
 
 export default GenresList;

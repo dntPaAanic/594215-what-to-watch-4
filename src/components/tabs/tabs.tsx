@@ -1,9 +1,13 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 const tabNames = [`Overview`, `Details`, `Reviews`];
 
-const Tabs = (props) => {
+type TabsProps = {
+  onTabClick: (id: number | string) => void;
+  activeTab: number;
+};
+
+const Tabs: React.FunctionComponent<TabsProps> = (props: TabsProps) => {
   const {onTabClick, activeTab} = props;
 
   return (
@@ -26,11 +30,6 @@ const Tabs = (props) => {
       })}
     </ul>
   );
-};
-
-Tabs.propTypes = {
-  onTabClick: PropTypes.func.isRequired,
-  activeTab: PropTypes.number.isRequired,
 };
 
 export default Tabs;

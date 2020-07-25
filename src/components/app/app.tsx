@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
@@ -19,12 +18,22 @@ import FullVideoPlayer from '../full-video-player/full-video-player';
 import withFullPlayer from '../../hocs/with-full-player/with-full-player';
 import {getMovieById, getSimilarFilms} from '../../helpers/utils';
 import {isAuth} from '../../reducer/user/selectors';
+import {Film} from '../../types';
 
 const AddReviewWrapped = withIsValid(AddReview);
 const MoviePageWrapped = withActiveItem(MoviePage);
 const FullVideoPlayerWrapped = withFullPlayer(FullVideoPlayer);
 
-const App = (props) => {
+type AppProps = {
+  login: ({email, password}: {email: string; password: string}) => void;
+  isAuthed: boolean;
+  isLoading: boolean;
+  films: Film[];
+  mainMovie: Film;
+  onCardClick: (id: number | string) => void;
+};
+
+const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
   const {films, onCardClick, login, isLoading, mainMovie, isAuthed} = props;
 
   return (
@@ -67,45 +76,6 @@ const App = (props) => {
     </Router>
 
   );
-};
-
-App.propTypes = {
-  mainMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    imagePreview: PropTypes.string,
-    genre: PropTypes.string,
-    releaseDate: PropTypes.number,
-    imagePoster: PropTypes.string,
-    imageBackground: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.string,
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    previewSrc: PropTypes.string,
-    runTime: PropTypes.number
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    imagePreview: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    imagePoster: PropTypes.string.isRequired,
-    imageBackground: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired
-  })).isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isAuthed: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

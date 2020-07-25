@@ -1,7 +1,14 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
-class VideoPlayer extends React.PureComponent {
+type VideoPlayerProps = {
+  isPlaying: boolean;
+  src: string;
+  imagePreview: string;
+  muted: boolean;
+};
+
+class VideoPlayer extends React.PureComponent<VideoPlayerProps, {}> {
+  private _videoRef: React.RefObject<HTMLVideoElement>;
   constructor(props) {
     super(props);
 
@@ -46,12 +53,4 @@ class VideoPlayer extends React.PureComponent {
   }
 }
 
-VideoPlayer.propTypes = {
-  isPlaying: PropTypes.bool.isRequired,
-  src: PropTypes.string.isRequired,
-  imagePreview: PropTypes.string.isRequired,
-  muted: PropTypes.bool.isRequired,
-};
-
 export default VideoPlayer;
-

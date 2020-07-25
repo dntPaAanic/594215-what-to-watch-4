@@ -1,9 +1,17 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
 import {Link} from 'react-router-dom';
+import {Film} from '../../types';
 
-const SmallMovieCard = (props) => {
+type SmallMovieCardProps = {
+  film: Film;
+  onCardClick: (id: number | string) => void;
+  onCardMouseEnter: (id: number | string) => void;
+  onCardMouseLeave: () => void;
+  activeCardId: number;
+};
+
+const SmallMovieCard: React.FunctionComponent<SmallMovieCardProps> = (props: SmallMovieCardProps) => {
   const {film, onCardClick, onCardMouseEnter, onCardMouseLeave, activeCardId} = props;
   const {title, imagePreview, previewSrc} = film;
 
@@ -25,35 +33,11 @@ const SmallMovieCard = (props) => {
           />
         </div>
         <h3 className="small-movie-card__title">
-          <span className="small-movie-card__link" href="#">{title}</span>
+          <span className="small-movie-card__link">{title}</span>
         </h3>
       </Link>
     </article>
   );
 };
 
-SmallMovieCard.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    imagePreview: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    imagePoster: PropTypes.string.isRequired,
-    imageBackground: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired
-  }).isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  activeCardId: PropTypes.number.isRequired,
-};
-
 export default SmallMovieCard;
-

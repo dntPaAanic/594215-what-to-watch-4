@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
@@ -12,10 +11,24 @@ import {Link} from 'react-router-dom';
 import {isFavorite as isFavoriteSelector} from '../../reducer/films/selectors';
 import {Operation} from '../../reducer/user/user';
 import history from '../../history';
+import {Film} from '../../types';
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 
-const Main = (props) => {
+type MainProps = {
+  mainMovie: Film;
+  films: Film[];
+  filterGenres: string[];
+  onCardClick: () => void;
+  filterType: string;
+  onFilterClick: (filterType: string) => void;
+  onShowMoreButtonClick: () => void;
+  showingCards: number;
+  toggleFavorite: (film: Film) => void;
+  isFavorite: boolean;
+};
+
+const Main: React.FunctionComponent<MainProps> = (props: MainProps) => {
   const {mainMovie, films, filterGenres, onCardClick, filterType, onFilterClick, onShowMoreButtonClick, showingCards, toggleFavorite, isFavorite} = props;
   const {title, genre, releaseDate, imagePoster, imageBackground} = mainMovie;
 
@@ -103,49 +116,6 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>);
-};
-
-Main.propTypes = {
-  mainMovie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    imagePreview: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    imagePoster: PropTypes.string.isRequired,
-    imageBackground: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    imagePreview: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    imagePoster: PropTypes.string.isRequired,
-    imageBackground: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired
-  })).isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  filterGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filterType: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-  showingCards: PropTypes.number.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
-  isFavorite: PropTypes.bool,
 };
 
 const mapStateToProps = (state, props) => {

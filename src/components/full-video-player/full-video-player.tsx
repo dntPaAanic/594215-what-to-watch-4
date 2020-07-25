@@ -1,9 +1,20 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import {Film} from '../../types';
 
-const FullVideoPlayer = (props) => {
+type FullVideoPlayerProps = {
+  film: Film;
+  children: React.ReactNode | React.ReactNode[];
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  onFullscreenButtonClick: (player: React.ReactNode) => void;
+  getPlaybackProgress: () => string;
+  getElapsedTime: () => string;
+  onExitButtonClick: () => void;
+};
+
+const FullVideoPlayer: React.FunctionComponent<FullVideoPlayerProps> = (props: FullVideoPlayerProps) => {
   const {onExitButtonClick, onPlayButtonClick, onFullscreenButtonClick, film, isPlaying, getPlaybackProgress, getElapsedTime, children} = props;
-  const playerRef = React.createRef();
+  const playerRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   return (
     <div className="player" ref={playerRef}>
@@ -51,35 +62,6 @@ const FullVideoPlayer = (props) => {
       </div>
     </div>
   );
-};
-
-FullVideoPlayer.propTypes = {
-  onExitButtonClick: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    imagePreview: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    imagePoster: PropTypes.string.isRequired,
-    imageBackground: PropTypes.string.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.number.isRequired
-  }).isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onFullscreenButtonClick: PropTypes.func.isRequired,
-  getPlaybackProgress: PropTypes.func.isRequired,
-  getElapsedTime: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 export default FullVideoPlayer;
