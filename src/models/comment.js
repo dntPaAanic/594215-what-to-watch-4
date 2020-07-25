@@ -6,7 +6,7 @@ class Comment {
       name: data[`user`][`name`] || ``
     };
     this.rating = data[`rating`] || ``;
-    this.review = data[`comment`] || ``;
+    this.text = data[`comment`] || ``;
     this.date = new Date(data[`date`]) || null;
   }
 

@@ -48,4 +48,8 @@ const formatTime = (min) => {
 
 const getSimilarFilms = (props, films) => films.filter((film) => film.id !== Number(props.match.params.id) && film.genre === getMovieById(props, films).genre).slice(0, SIMILAR_FILMS_COUNT);
 
-export {getRatingLevel, formatPlayerTime, getMovieById, formatTime, getSimilarFilms};
+const noop = () => {
+  void 0;
+};
+
+export {getRatingLevel, formatPlayerTime, getMovieById, formatTime, getSimilarFilms, noop};

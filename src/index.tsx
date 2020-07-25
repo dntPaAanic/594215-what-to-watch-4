@@ -16,10 +16,10 @@ const onUnauthorized = () => {
 
 const api = createAPI(onUnauthorized);
 const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api))
-  )
+    reducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 const init = () => {

@@ -17,6 +17,7 @@ const ValidateRule = {
     MAX: 5
   }
 };
+
 const comment = {
   rating: -1,
   review: ``
