@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import moment = require('moment');
+import moment = require('moment'); // eslint-disable-line
 import {Operation as CommentsOperation} from '../../reducer/comments/comments';
 import {Film, Comment} from '../../types';
 
@@ -11,15 +11,15 @@ type MoviePageReviewsProps = {
   isCommentsLoaded: boolean;
 };
 
-class MoviePageReviews extends React.PureComponent<MoviePageReviewsProps, {}> {
-  componentDidMount() {
+class MoviePageReviews extends React.PureComponent<MoviePageReviewsProps> {
+  componentDidMount(): void {
     const {film, loadComments, isCommentsLoaded} = this.props;
     if (!isCommentsLoaded) {
       loadComments(film.id);
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     const {comments, isCommentsLoaded} = this.props;
     if (isCommentsLoaded && !comments.length) {
       return <h2>Be first to leave a review!</h2>;

@@ -18,13 +18,13 @@ type MyListProps = {
   loadFavoriteFilms: () => void;
 };
 
-class MyList extends React.PureComponent<MyListProps, {}> {
-  componentDidMount() {
+class MyList extends React.PureComponent<MyListProps> {
+  componentDidMount(): void {
     const {loadFavoriteFilms} = this.props;
     loadFavoriteFilms();
   }
 
-  render() {
+  render(): React.ReactNode {
     const {films, onCardClick, isLoading} = this.props;
 
     return (

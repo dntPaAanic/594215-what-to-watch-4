@@ -11,7 +11,6 @@ const SIMILAR_FILMS_COUNT = 4;
 
 const similarFilms = films.slice(0, SIMILAR_FILMS_COUNT);
 
-jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 
 it(`MoviePage should render correct`, () => {

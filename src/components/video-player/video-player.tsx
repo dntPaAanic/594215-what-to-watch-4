@@ -7,15 +7,15 @@ type VideoPlayerProps = {
   muted: boolean;
 };
 
-class VideoPlayer extends React.PureComponent<VideoPlayerProps, {}> {
+class VideoPlayer extends React.PureComponent<VideoPlayerProps> {
   private _videoRef: React.RefObject<HTMLVideoElement>;
-  constructor(props) {
+  constructor(props: VideoPlayerProps) {
     super(props);
 
     this._videoRef = React.createRef();
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     const {src, imagePreview, muted} = this.props;
     const video = this._videoRef.current;
 
@@ -24,13 +24,13 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, {}> {
     video.muted = muted;
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     const video = this._videoRef.current;
 
     video.src = ``;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     const {isPlaying} = this.props;
     const video = this._videoRef.current;
 
@@ -43,7 +43,7 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, {}> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <video ref={this._videoRef}
         width="280"

@@ -9,7 +9,6 @@ import {Provider} from 'react-redux';
 
 const GENRE = `Thrillers`;
 
-jest.mock(`../user-block/user-block.jsx`, () => `user-block`);
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 
 it(`Main should render correct`, () => {

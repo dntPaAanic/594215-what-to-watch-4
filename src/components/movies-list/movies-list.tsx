@@ -10,9 +10,9 @@ type MoviesListProps = {
   activeItem: number;
 };
 
-class MoviesList extends React.PureComponent<MoviesListProps, {}> {
+class MoviesList extends React.PureComponent<MoviesListProps> {
   private timerId: number;
-  constructor(props) {
+  constructor(props: MoviesListProps) {
     super(props);
 
     this._handleCardMouseClick = this._handleCardMouseClick.bind(this);
@@ -22,7 +22,7 @@ class MoviesList extends React.PureComponent<MoviesListProps, {}> {
     this.timerId = null;
   }
 
-  _handleCardMouseClick(id) {
+  _handleCardMouseClick(id: number): void {
     const {onCardClick} = this.props;
 
     if (this.timerId) {
@@ -31,7 +31,7 @@ class MoviesList extends React.PureComponent<MoviesListProps, {}> {
     onCardClick(id);
   }
 
-  _handleCardMouseEnter(id) {
+  _handleCardMouseEnter(id: number): void {
     const {onActiveItemChange} = this.props;
 
     this.timerId = window.setTimeout(() => {
@@ -39,7 +39,7 @@ class MoviesList extends React.PureComponent<MoviesListProps, {}> {
     }, PREVIEW_DELAY);
   }
 
-  _handleCardMouseLeave() {
+  _handleCardMouseLeave(): void {
     const {onActiveItemChange} = this.props;
     if (this.timerId) {
       clearTimeout(this.timerId);
@@ -47,7 +47,7 @@ class MoviesList extends React.PureComponent<MoviesListProps, {}> {
     onActiveItemChange(-1);
   }
 
-  render() {
+  render(): React.ReactNode {
     const {films, activeItem: activeCardId} = this.props;
 
     return (
