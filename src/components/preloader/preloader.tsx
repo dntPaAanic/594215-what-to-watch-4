@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Preloader = (): React.ReactElement => {
+const Preloader = () => {
 
   return (<div className="preloader" style={{top: `20vh`, left: `50vw`, position: `absolute`, transform: `translateX(-50%)`}}>
     <svg width="64px" height="64px" viewBox="0 0 128 128" xmlSpace="preserve">
