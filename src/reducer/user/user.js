@@ -1,7 +1,7 @@
-import User from '../../models/user.js';
-import history from '../../history.js';
-import Film from '../../models/film.js';
-import {getFilmById} from '../films/selectors.js';
+import User from '../../models/user';
+import history from '../../history';
+import Film from '../../models/film';
+import {getFilmById} from '../films/selectors';
 
 const initialState = {
   authUserData: null,
