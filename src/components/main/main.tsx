@@ -131,6 +131,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => ({
   onFilterClick(filterType) {
     dispatch(ActionCreator.changeGenreFilter(filterType));
+    dispatch(ActionCreator.resetShowingCardsCount());
   },
   onShowMoreButtonClick() {
     dispatch(ActionCreator.incrementShowingCards());

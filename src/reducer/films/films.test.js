@@ -96,6 +96,13 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
+  it(`Action creator for resetShowingCardsCount returns correct action`, () => {
+    expect(ActionCreator.resetShowingCardsCount()).toEqual({
+      type: ActionType.RESET_SHOWING_CARDS_COUNT,
+      payload: FilmsCount.BY_BUTTON_CLICK
+    });
+  });
+
   it(`Action creator for setPreloaderState returns correct action`, () => {
     expect(ActionCreator.setPreloaderState(true)).toEqual({
       type: ActionType.SET_PRELOADER_STATE,
